@@ -13,14 +13,19 @@
     </style>
 </head>
 <body>
-    <h1>Iniciando os passos com DOM</h1>
+    <h1>Iniciando os passos com DOM </h1>
     <p>Aqui vai o resultado</p>
     <p>Aprendendo a usar o <strong>DOM</strong> em JavaScript</p>
     <div>Clique em mim</div>
 
     <script>
-        window.document.getElementsByTagName('p')
-        window.document.write()
+        var corpo = window.document.body
+        var p1 = window.document.getElementsByTagName('p')[1]
+        p1.style.color = 'violet'
+        p1.style.fontSize = '25px'
+        corpo.style.background = '#f20278'
+
+        document.write(p1.innerHTML)
     </script>
 </body>
 </html>
