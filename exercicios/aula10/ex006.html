@@ -17,6 +17,7 @@
             text-align: center;
             line-height: 200px;
             margin: auto;
+            margin-top: 40px;
             border-radius: 5px;
         }
     </style>
@@ -25,5 +26,30 @@
     <div id="area">
         Interaja...
     </div>
+
+    <script>
+        var area = window.document.getElementById('area')
+        area.addEventListener('click', clicar)
+        area.addEventListener('mouseenter', entrar)
+        area.addEventListener('mouseout', sair)
+
+        function clicar() {
+            area.innerText = ('Clicou!')
+            area.style.background = 'white'
+            area.style.width = '90vw'
+        }
+
+        function entrar() {
+            area.innerText = ('Entrou!')
+            area.style.textDecoration = 'underline'
+        }
+
+        function sair() {
+            area.innerText = ('Saiu!')
+            area.style.background = 'green'
+            area.style.color = 'blue'
+            area.style.textDecoration = 'none'
+        }
+    </script>
 </body>
 </html>
