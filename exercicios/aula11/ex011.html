@@ -42,7 +42,7 @@
 <body>
     <h1>Seleção de País</h1>
 
-    Digite seu País: <input type="text" name="pais" id="pais">
+    Em que país você mora: <input type="text" name="pais" id="pais">
     <input type="button" value="Verificar" id="botao" onclick="verificar()">
     <div id="res"></div>
 
@@ -50,8 +50,9 @@
         function verificar() {
             var pais = window.document.querySelector('input#pais')
             var res = window.document.querySelector('div#res')
+            var pais = String(pais.value)
 
-            if (pais.value === 'Brasil') {
+            if (pais == 'Brasil') {
                 res.innerHTML = `Você é Brasileiro`
             } else {
                 res.innerHTML = `Você é Estrangeiro`
