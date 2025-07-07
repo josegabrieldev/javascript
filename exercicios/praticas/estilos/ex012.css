@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+* {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(13, 51, 85);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        main {
+            background-color: white;
+            padding: 12px;
+            margin: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 2px 3px 5px #00000059;
+        }
+
+        main > h1 {
+            background-image: linear-gradient(to right, #C4EEF2, transparent);
+            color: #025159;
+            padding: 8px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        main > p {
+            text-align: justify;
+            font-size: 17px;
+            line-height: 1.3em;
+        }
+
+        main input#num {
+            width: 70px;
+            background-color: #3E848C;
+            color: white;
+            padding: 5px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 2px;
+        }
+
+        main input#botao {
+            display: block;
+            background-color: #9edce2;
+            font-size: 16px;
+            padding: 5px 10px;
+            margin: 12px auto;
+            border: 1px solid black;
+        }
+
+        main input#botao:active {
+            background-color: #025159;
+            color: white;
+        }
+
+        main > div#res {
+            background-color: #025159;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 20px;
+            border-radius: 5px;
+        }
