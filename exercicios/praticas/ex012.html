@@ -10,13 +10,24 @@
     <main>
         <h1>Calculadora de Multas</h1>
         <p>Vou pedir a velocidade do carro ao usuário e se a velocidade for maior que 80km/h vai ser mostrado uma multa com um valor a paga de 5 reais a cada km ultrapassado acima do limite.</p>
-        <p>Digite a velocidade do seu veículo: <input type="number" name="num" id="num"></p>
-        <input type="button" id="botao" value="Verificar">
+        <p>Digite a velocidade do seu veículo: <input type="number" name="num" id="num">km/h</p>
+        <input type="button" id="botao" value="Verificar" onclick="verificar()">
         <div id="res">Resultado</div>
     </main>
 
     <script>
-
+        function verificar() {
+            var num = window.document.getElementById('num')
+            var res = window.document.getElementById('res')
+            var vel = Number(num.value)
+            
+            if (vel > 80) {
+                var multa = (vel - 80) * 5 
+                    res.innerHTML = `Você foi <strong>MULTADO</strong> por exceder o limite de velocidade permitido. Valor da multa R$:${multa.toFixed(2)} reais.`
+            } else {
+                res.innerHTML = 'Você esta dentro do limite de velocidade permitido. Dirija sempre com segurança!'
+            }
+        }
     </script>
 </body>
 </html>
