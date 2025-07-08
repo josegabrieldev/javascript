@@ -23,9 +23,9 @@
             
             if (vel > 80) {
                 var multa = (vel - 80) * 5 
-                    res.innerHTML = `Você foi <strong>MULTADO</strong> por exceder o limite de velocidade permitido. Valor da multa R$:${multa.toFixed(2)} reais.`
+                    res.innerHTML = `Você foi <strong>MULTADO</strong> por exceder o limite de velocidade permitido. Valor da multa R$${multa.toFixed(2)} reais.`
             } else {
-                res.innerHTML = 'Você esta dentro do limite de velocidade permitido. Dirija sempre com segurança!'
+                res.innerHTML = 'Você esta dentro do limite de velocidade permitido. <br> Dirija sempre com segurança!'
             }
         }
     </script>

@@ -6,7 +6,7 @@
     <title>Sistema de votação</title>
     <style>
         body {
-            background-color: #4233b3;
+            background-color: #5f4cee;
             font: normal 18px arial;
         }
 
@@ -23,7 +23,7 @@
 
         input#num {
             width: 40px;
-            background-color: rgba(0, 0, 0, 0.822);
+            background-color: rgba(0, 0, 0, 0.781);
             color: rgba(255, 255, 255, 0.76);
             padding: 3px;
         }
@@ -41,7 +41,7 @@
 
         div#res {
             max-width: 600px;
-            background-color: #100d2b;
+            background-color: #201a53;
             color: rgba(255, 255, 255, 0.76);
             text-align: center;
             line-height: 40px;
@@ -65,7 +65,8 @@
             var idade = Number(num.value)
 
             if (idade < 16) {
-                res.innerHTML = 'Você ainda não atingiu a idade para realizar seu voto.'
+                res.innerHTML = 'Você ainda não atingiu a idade para realizar seu voto. <br>'
+                res.innerHTML += 'Você é Menor de Idade!'
             } else if (idade < 18 || idade > 65) {
                 res.innerHTML = 'Seu voto é Opcional.'
             } else {
