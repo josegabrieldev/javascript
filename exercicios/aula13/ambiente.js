@@ -9,6 +9,7 @@ do {
 
 /*
 METODO RECOMENDADO
+var c = 1
 while (c <= 6) {
     console.log(`Olá, Mundo! ${c}`)
     c++ // c = c + 1
