@@ -20,10 +20,33 @@ header {
 main {
     max-width: 500px;
     background-color: white;
-    padding: 15px;
+    padding: 12px;
     margin: 30px auto;
     border-radius: 8px;
     box-shadow: 5px 5px 10px #00000044;
+}
+
+div > p {
+    margin: 15px;
+}
+
+p > input {
+    background-color: #808080;
+    color: white;
+    padding: 4px;
+}
+
+div > input#botao {
+    background-color: #3b55a8;
+    color: white;
+    padding: 5px;
+    margin: 10px 15px;
+}
+
+div#res {
+    background-color: lightgrey;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 footer {

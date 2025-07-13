@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de Desafio</title>
-    <link rel="stylesheet" href="estilos/d1style.css">
+    <title>Super Contador</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Primeiro Desafio</h1>
+        <h1>Vamos Contar</h1>
     </header>
 
     <main>
         <section>
-            <div>Testando..</div>
-            <div>Testando..</div>
+            <div>
+                <p>Início: <input type="number" name="inicio" id="inicio"></p>
+                <p>Fim: <input type="number" name="fim" id="fim"></p>
+                <p>Passo: <input type="number" name="passo" id="passo"></p>
+                <input type="button" value="Contar" id="botao" onclick="contar()">
+            </div>
+            <div id="res">
+                Preparando a contagem...
+            </div>
         </section>
     </main>
 
@@ -22,6 +29,6 @@
         <p>&copy;José Gabriel!</p>
     </footer>
 
-    <script src="d1script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
