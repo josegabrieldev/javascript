@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de Desafio</title>
-    <link rel="stylesheet" href="estilos/d1style.css">
+    <title>Tabuada</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Primeiro Desafio</h1>
+        <h1>Tabuada</h1>
     </header>
 
     <main>
         <section>
-            <div>Testando..</div>
-            <div>Testando..</div>
+            <div>
+                <p>Número: <input type="number" name="num" id="num"></p>
+                <input type="button" value="Gerar Tabuada" id="botao" onclick="tabuada()">
+            </div>
+
+            <div>
+                <select name="tab" id="tabuada" size="10">
+                    <option>Digite um Número acima:</option>
+                </select>
+            </div>
         </section>
     </main>
 
@@ -22,6 +30,6 @@
         <p>&copy;José Gabriel!</p>
     </footer>
 
-    <script src="d1script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
