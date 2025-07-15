@@ -3,7 +3,7 @@ var c = 1
 do {
     console.log(`Seja Bem vindo pela ${c} vez.`)
     c++ // c = c + 1
-} while (c <= 6)
+} while (c <= 5)
 
 
 
