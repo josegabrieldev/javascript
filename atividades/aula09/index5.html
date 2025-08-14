@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moeda</title>
+    <style>
+        body {
+            background-color: darkslategrey;
+            font-size: 1.3em;
+        }
+
+        input {
+            background-color: #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: rgb(53, 53, 197);
+            color: white;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Dólar</h1>
+    <input type="number" name="num" id="num" placeholder="Valor em Reais">
+    <button onclick="converter()">Converter</button>
+
+    <script>
+        const valorReal = document.querySelector('input#num')
+        document.querySelector('h1').style.color = '#ccc'
+        function converter() {
+            const valorConvertido = valorReal.value / 5
+            alert(`Você possui ${valorConvertido} dólares`)
+        }
+    </script>
+</body>
+</html>
