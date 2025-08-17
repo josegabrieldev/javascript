@@ -1,17 +1,11 @@
 /*
-
-    DOMINANDO ARRAYS no JavaScript
-
-    Map(Mapear item por item do Array)
-        - Criar um novo array com a mesma quantidade de items do array original.
-        - O novo array você pode alterar o que quiser em relação ao original.
-        - Você tem acesso a 3 dados:
+Filter(Filtrar o Array)
+        - Cria um novo array filtrando os valores desejados do array original
+        - Você tem acesso a 3 dados
             - Item por Item do array
-            - Posição atual do Array
-            - Array Completo      
-    
+            - Posição Atual do array
+            - Array Completo
 */
-
     const produtos = [
         { id: 1, nome: 'Smartphone Galaxy S21', preco: 3999.99, temDesconto: true, quantidade: 1, },
         { id: 2, nome: 'Notebook Dell Inspiron', preco: 4500.00, temDesconto: false, quantidade: 3, },
@@ -25,16 +19,7 @@
         { id: 10, nome: 'Caixa de Som Portátil Sony', preco: 1000.00, temDesconto: false, quantidade: 3, },
     ] // temDesconto = 10% de desconto ou valor do produto multiplicado por 0.9
 
-     // Criar um novo array formatando a moeada e dando desconto aos clientes
-    const novosProdutos = produtos.map( produto => {
-        // Ternário if / else   ? = if  : = else
-        const novoPreco = produto.temDesconto ? produto.preco * 0.9: produto.preco
-
-        return {
-            id: produto.id,
-            nome: produto.nome,
-            preco: novoPreco.toLocaleString('pt-br', {style: "currency", currency: 'BRL'}),
-            quantidade: produto.quantidade
-        }
-    })
-    console.log(novosProdutos)
+    // Filtrar somente os produtos em promoção
+    const promocao = produtos.filter( produto => produto.temDesconto)   // aqui so vai retorna o produto que tem desconto
+        // Para retorna os produtos que não tem desconto basta colocar uma !. assim !produto.temDesconto
+    console.log(promocao)

@@ -1,18 +1,5 @@
-/*
-
-    DOMINANDO ARRAYS no JavaScript
-
-    Map(Mapear item por item do Array)
-        - Criar um novo array com a mesma quantidade de items do array original.
-        - O novo array você pode alterar o que quiser em relação ao original.
-        - Você tem acesso a 3 dados:
-            - Item por Item do array
-            - Posição atual do Array
-            - Array Completo      
-    
-*/
-
-    const produtos = [
+// JUNTANDO TUDO EM UM SÓ, FAZENDO DE UMA VEZ
+const produtos = [
         { id: 1, nome: 'Smartphone Galaxy S21', preco: 3999.99, temDesconto: true, quantidade: 1, },
         { id: 2, nome: 'Notebook Dell Inspiron', preco: 4500.00, temDesconto: false, quantidade: 3, },
         { id: 3, nome: 'Smart TV LG 55', preco: 2799.00, temDesconto: true, quantidade: 5, },
@@ -25,16 +12,13 @@
         { id: 10, nome: 'Caixa de Som Portátil Sony', preco: 1000.00, temDesconto: false, quantidade: 3, },
     ] // temDesconto = 10% de desconto ou valor do produto multiplicado por 0.9
 
-     // Criar um novo array formatando a moeada e dando desconto aos clientes
-    const novosProdutos = produtos.map( produto => {
-        // Ternário if / else   ? = if  : = else
-        const novoPreco = produto.temDesconto ? produto.preco * 0.9: produto.preco
+// Adicionar +10 em cada produto
+// Filtrar somente só os em promoção
+// Saber qual é o faturamento se vendermos todos em promoção
 
-        return {
-            id: produto.id,
-            nome: produto.nome,
-            preco: novoPreco.toLocaleString('pt-br', {style: "currency", currency: 'BRL'}),
-            quantidade: produto.quantidade
-        }
-    })
-    console.log(novosProdutos)
+    const faturamentoTotal = produtos.map( produto => {
+        return { ...produto, quantidade: produto.quantidade + 12} // adiciona +12 a quantidade de cada produto
+    }).filter( produto => produto.temDesconto).reduce( (acumulador, produto) => acumulador + (produto.quantidade * produto.preco), 0)
+    //.filter pega somente os produtos com descontos
+    //.reduce soma todos os precos em um único valor, incluive multiplicando a quantidade e somando
+    console.log(faturamentoTotal.toLocaleString('pt-br', {style: "currency", currency: 'BRL'}))
