@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #373435;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #3C5395;
+    color: white;
+    padding: 2.5em;
+    border-radius: 8px;
+}
+
+span#contador {
+    width: 40%;
+    background-image: linear-gradient(to left, #171c68, #2733e0);
+    color: white;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin: auto;
+    border-radius: 4px;
+    transition: color 0.5s ease;
+}
+
+button.button-all {
+    width: 80%;
+    display: block;
+    font-size: 1.5em;
+    padding: 10px;
+    margin: auto;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#button-contar {
+    background-color: #063b1f;
+    color: white;
+}
+
+#button-resetar {
+    background-color: #30063b;
+    color: white;
+}
+
+#button-diminuir {
+    background-color: #3b0606;
+    color: white;
+}
+
+#button-contar:hover,
+#button-contar:active {
+    background-color: #00ff77d2;
+}
+
+#button-resetar:hover,
+#button-resetar:active {
+background-color: #cc00ffd3;
+}
+
+#button-diminuir:hover,
+#button-diminuir:active {
+    background-color: #ff0000ad;
+}
+
+@keyframes brilho {
+    0% { text-shadow: 0 0 5px white; }
+    50% { text-shadow: 0 0 20px white; }
+    100% { text-shadow: 0 0 5px white; }
+}
+
+.brilho {
+    animation: brilho 0.6s ease;
+}
