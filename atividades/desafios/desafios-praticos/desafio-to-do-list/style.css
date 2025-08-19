@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #2e2e2e;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    max-width: 400px;
+    background-color:#3C5395;
+    color: white;
+    text-align: center;
+    padding: 2.5em;
+    border-radius: 8px;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+#nova-tarefa {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1em;
+}
+
+#input-tarefa {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+#lista-tarefas li {
+    background-color:  #353863;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#lista-tarefas li span {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Botão Adicionar */
+#button-adicionar {
+    background-color: #13914E;
+    color: white;
+}
+#button-adicionar:hover {
+    background-color: #0e6a39;
+}
+
+/* Botão Limpar Tudo */
+#button-limpar {
+    background-color: #b03030;
+    color: white;
+    margin-top: 10px;
+}
+#button-limpar:hover {
+    background-color: #ff4d4d;
+}
+
+/* Botões Remover de cada tarefa */
+#lista-tarefas button {
+    background-color: #3b30b0;
+    color: white;
+    padding: 4px 8px;
+    font-size: 0.9em;
+}
+#lista-tarefas button:hover {
+    background-color: #5a49d1;
+}
+
+span {
+    color: white;
+    font-size: 1em;
+    font-weight: bolder;
+    display: inline-block;
+    margin-top: 1.2em;
+}
+
+div p {
+    margin: 5px 0;
+}
+
+#tarefas-pendentes {
+    color: #FF6347; /* vermelho/laranja para pendentes */
+    font-weight: bolder;
+}
+
+#tarefas-concluidas {
+    color: #32CD32; /* verde para concluídas */
+    font-weight: bolder;
+}
+
+#total-tarefas {
+    color: #1E90FF; /* azul para total */
+    font-weight: bolder;
+}
+
+.concluida {
+    text-decoration: line-through;
+    color: #008000c9;
+    transition: 0.4s;
+}

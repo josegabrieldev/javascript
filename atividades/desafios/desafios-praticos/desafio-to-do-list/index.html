@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Lista de Tarefas</h1>
+
+        <section id="nova-tarefa">
+            <input type="text" name="input-tarefa" id="input-tarefa" placeholder="Digite uma Tarefa...">
+            <button id="button-adicionar">Adicionar</button>
+        </section>
+
+        <ul id="lista-tarefas"></ul>
+        <button id="button-limpar">Limpar Tudo</button>
+
+            <div>
+                <p>Pendentes: <span id="tarefas-pendentes">0</span></p>
+                <p>Concluídas: <span id="tarefas-concluidas">0</span></p>
+                <p>Total: <span id="total-tarefas">0</span></p>
+            </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
