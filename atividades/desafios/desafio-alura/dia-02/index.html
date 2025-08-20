@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia 2</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background-image: linear-gradient(to right, #1C1240, #0D0D0D);
+            color: #ffffffbd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.575);
+            padding: 2.2em;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #8a3bbfcc;
+        }
+
+        main h1, h2 {
+            color: #ffffffe5;
+            font-size: 2.3em;
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        main p {
+            text-align: justify;
+            line-height: 1.3em;
+            font-size: 1.1em;
+        }
+
+        div#informacoes {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div#informacoes span {
+            margin: 7px 0px;
+        }
+
+        span input {
+            background-color: #321659;
+            color: #fff;
+            font-family: monospace;
+            text-align: center;
+            padding: 3px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        main button#button-saudacao, button#complemento {
+            display: block;
+            background-image: linear-gradient(to left, #c671ff, #59288a);
+            color: rgba(255, 255, 255, 0.753);
+            font-size: 0.9em;
+            font-weight: bold;
+            padding: 8px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 4px;
+        }
+
+        div#saudacao {
+            width: 300px;
+            background-color: #321659;
+            text-align: justify;
+            padding: 12px;
+            margin: auto;
+            margin-top: 18px;
+            box-shadow: inset 0px 0px 10px #8a3bbfc2;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Desafio Alura</h1>
+        <h2>Dia 2</h2>
+        <p>Vou fazer esse desafio de forma diferente a parte principal vai ser feita em HTML usando inputs para captura as respostas dos usuários e a saudação vai ser feita quando clicar em um botão, e para a mensagem de exercício opcional vou usar o promp mas apenas quando o usuário clicar em um outro botão.</p>
+        <div id="informacoes">
+            <span>Qual seu nome? <input type="text" name="nome" id="nome" placeholder="Digite seu nome..."></span>
+            <span>Quantos anos você tem? <input type="text" name="idade" id="idade" placeholder="Digite sua idade..."></span>
+            <span>Qual linguagem de programação você está estudando?<input type="text" name="linguagem" id="linguagem" placeholder="Digite uma linguagem..."></span>
+        </div>
+        <button id="button-saudacao" onclick="saudacao()">Saudação</button>
+        <div id="saudacao">Clique no botão "Saudação"</div>
+    </main>
+
+    <button id="complemento">Clique</button>
+
+    <script>
+        function saudacao() {
+            let nome = document.getElementById('nome')
+            let idade = document.getElementById('idade')
+            let linguagem = document.getElementById('linguagem')
+            let saudacao = document.getElementById('saudacao')
+
+            if(nome.value.trim() === '' || idade.value.trim() === '' || linguagem.value.trim() === '') {
+                saudacao.innerHTML = 'Um ou mais dos campos estão vazios por digite algo!'
+                alert('Um ou mais campos estão vazios por digite algo!')
+            } else {
+                saudacao.innerHTML = `Olá ${nome.value}, você tem ${idade.value} anos e já está aprendendo ${linguagem.value}!`
+            }
+
+            let buttonComplemento = document.getElementById('complemento')
+            buttonComplemento.addEventListener('click', function() {
+                let resposta = prompt(`Você gosta de estudar ${linguagem.value}? Responda com o número 1 para SIM ou 2 para NÃO.`)
+
+                if(resposta == 1) {
+                    alert('Muito bom! Continue estudando e você terá muito sucesso.')
+                }
+                if(resposta == 2) {
+                    alert('Ahh que pena... Já tentou aprender outras linguagens?')
+                }
+            })
+        }
+    </script>
+</body>
+</html>
