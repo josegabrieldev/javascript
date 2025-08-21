@@ -22,7 +22,7 @@
         }
 
         main {
-            max-width: 600px;
+            width: 400px;
             background-color: rgba(0, 0, 0, 0.575);
             padding: 2.2em;
             border-radius: 8px;
@@ -75,7 +75,7 @@
         }
 
         div#saudacao {
-            width: 300px;
+            width: 250px;
             background-color: #321659;
             text-align: justify;
             padding: 12px;
@@ -109,7 +109,7 @@
             let saudacao = document.getElementById('saudacao')
 
             if(nome.value.trim() === '' || idade.value.trim() === '' || linguagem.value.trim() === '') {
-                saudacao.innerHTML = 'Um ou mais dos campos estão vazios por digite algo!'
+                saudacao.innerHTML = 'Um ou mais dos campos estão vazios por favor digite algo!'
                 alert('Um ou mais campos estão vazios por digite algo!')
             } else {
                 saudacao.innerHTML = `Olá ${nome.value}, você tem ${idade.value} anos e já está aprendendo ${linguagem.value}!`
@@ -117,6 +117,11 @@
 
             let buttonComplemento = document.getElementById('complemento')
             buttonComplemento.addEventListener('click', function() {
+                if(linguagem.value.trim() === '') {
+                    alert('Você precisa fazer a primeira parte do desafio antes de clicar neste botão.')
+                    return
+                }
+
                 let resposta = prompt(`Você gosta de estudar ${linguagem.value}? Responda com o número 1 para SIM ou 2 para NÃO.`)
 
                 if(resposta == 1) {
