@@ -8,9 +8,8 @@ const quizData = [
             { text: "Salvador", correct: false },
         ]
     },
-
     {
-        question: "Quem desenvolveu o JavaScript",
+        question: "Quem desenvolveu o JavaScript?",
         answers: [
             { text: "Microsoft", correct: false },
             { text: "Brendan Eich", correct: true },
@@ -18,7 +17,6 @@ const quizData = [
             { text: "Google", correct: false },
         ]
     },
-
     {
         question: "Quem é o maior artilheiro da seleção Brasileira de todos os tempos?",
         answers: [
@@ -28,7 +26,6 @@ const quizData = [
             { text: "Romário", correct: false },
         ]
     },
-
     {
         question: "Quem dirigiu o filme 'Titanic' (1997)?",
         answers: [
@@ -38,7 +35,6 @@ const quizData = [
             { text: "George Lucas", correct: false },
         ]
     },
-
     {
         question: "Qual é o maior país do mundo em território?",
         answers: [
@@ -48,9 +44,8 @@ const quizData = [
             { text: "Canadá", correct: false },
         ]
     },
-    
     {
-        question: "Qual empresa criou o videoGame PlayStation?",
+        question: "Qual empresa criou o videogame PlayStation?",
         answers: [
             { text: "Microsoft", correct: false },
             { text: "Nintendo", correct: false },
@@ -58,7 +53,6 @@ const quizData = [
             { text: "Sega", correct: false },
         ]
     },
-
     {
         question: "Qual planeta é conhecido como 'Planeta Vermelho'?",
         answers: [
@@ -68,7 +62,6 @@ const quizData = [
             { text: "Saturno", correct: false },
         ]
     },
-
     {
         question: "Quem escreveu 'Dom Quixote'?",
         answers: [
@@ -78,7 +71,6 @@ const quizData = [
             { text: "William Shakespeare", correct: false },
         ]
     },
-
     {
         question: "Quem é conhecido como o 'Rei do Pop'?",
         answers: [
@@ -88,7 +80,6 @@ const quizData = [
             { text: "Prince", correct: false },
         ]
     },
-
     {
         question: "Em que ano a linguagem Python foi criada?",
         answers: [
@@ -98,56 +89,68 @@ const quizData = [
             { text: "1995", correct: false },
         ]
     },
-]
+];
 
-const questionE1 = document.querySelector('#question')
-const answersE1 = document.querySelector('#answers')
-const containerE1 = document.querySelector('#question-container')
-const resultadoE1 = document.querySelector('#resultado')
-const scoreE1 = document.querySelector('#score')
-const restartBtn = document.querySelector('#restart')
+const questionContainer = document.getElementById("question-container");
+const answersContainer = document.getElementById("answers");
+const resultado = document.getElementById("resultado");
+const scoreText = document.getElementById("score");
+const restartBtn = document.getElementById("restart");
 
-let currentIndex = 0
-let score = 0
+let currentQuestion = 0;
+let score = 0;
 
-function startQuiz() {
-    currentIndex = 0
-    score = 0
-    resultadoE1.style.display = 'none'
-    containerE1.style.display = 'block'
-    renderQuestion()
-}
-startQuiz()
+function mostrarPergunta() {
+    resetState();
 
-function renderQuestion() {
-    const q = quizData[currentIndex]
-    questionE1.textContent = q.question
+    let perguntaAtual = quizData[currentQuestion];
+    questionContainer.querySelector("p").innerText = perguntaAtual.question;
 
-    answersE1.innerHTML = ''
+    perguntaAtual.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn-resposta");
 
-    q.answers.forEach((ans) => {
-        const btn = document.createElement('button')
-        btn.textContent = ans.text
-        btn.addEventListener('click', () => handleAnswer(ans.correct, btn))
-        answersE1.appendChild(btn)
-    })
-}
+        button.addEventListener("click", () => {
+            // só marca o clicado
+            if (answer.correct) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+            }
 
-function handleAnswer(iscorrect, buttonE1) {
-    if(iscorrect)
-        currentIndex++
+            // esperar um pouco e ir para a próxima
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    mostrarPergunta();
+                } else {
+                    mostrarResultado();
+                }
+            }, 1000);
+        });
 
-    if(currentIndex >= quizData.length) {
-        showResult()
-    } else {
-        renderQuestion()
-    }
-}
-
-function showResult() {
-    containerE1.style.display = 'none'
-    resultadoE1.style.display = 'block'
-    scoreE1.textContent = `Você acertou ${score} de ${quizData.length} perguntas.`
+        answersContainer.appendChild(button);
+    });
 }
 
-restartBtn.addEventListener('click', startQuiz)
+function resetState() {
+    answersContainer.innerHTML = "";
+}
+
+function mostrarResultado() {
+    questionContainer.style.display = "none";
+    resultado.style.display = "block";
+    scoreText.innerText = `Você acertou ${score} de ${quizData.length} perguntas.`;
+}
+
+restartBtn.addEventListener("click", () => {
+    currentQuestion = 0;
+    score = 0;
+    resultado.style.display = "none";
+    questionContainer.style.display = "block";
+    mostrarPergunta();
+});
+
+mostrarPergunta();
