@@ -1,2 +1,3 @@
-document.getElementById('texto').innerHTML = "Meu primeiro texto em <strong> JS<strong/>";
-console.log('Olá teste de console.log')
+const idade = prompt("Digite a sua idade")
+const nomeCompleto = prompt('Me diga seu nome completo')
+alert(`Você tem ${idade} anos e seu nome é ${nomeCompleto}`)
