@@ -11,12 +11,50 @@
             text-align: center;
             padding: 1rem 3rem;
         }
+
+        button {
+            background-color: #0d520d;
+            font-size: 1.5rem;
+            color: rgb(255, 255, 255);
+            padding: 6px 12px;
+            border-radius: 10px 4px;
+            border: 1px solid #27ff77;
+            cursor: pointer;
+            box-shadow: 0 0 10px #27ff77;
+        }
+
+        div#texto {
+            width: 100%;
+            background-color: white;
+            color: black;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            border-radius: 8px;
+        }
+        input {
+            background-color: #2a0c5a;
+            color: white;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            border-radius: 6px;
+            border: 1px solid #250a50;
+            width: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
-    <h1>Aprendendo JavaScript</h1>
-    <h2>Tipos de Saidas de Dados</h2>
-    <p id="texto"></p>
+    <h1>Mensagem de boas vindas</h1>
+    <button onclick="mensagem()">Saudação</button>
+    <div id="texto">Usuarios</div>
+    <input type="text" name="nome" id="nome">
+    <input type="number" name="idade" id="idade">
+    <input type="text" name="cidade" id="cidade">
+    <input type="text" name="profissao" id="profissao">
     <script src="script.js"></script>
 </body>
 </html>
