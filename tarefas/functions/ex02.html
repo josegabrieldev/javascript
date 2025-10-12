@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Área</title>
+    <link rel="stylesheet" href="estilos/style02.css">
+</head>
+<body>
+    <main>
+        <h1>Função para calcular área</h1>
+        <h2>Retângulo</h2>
+        <div id="formulario">
+            <form method="get">
+                <label for="base">Largura:</label>
+                <input type="number" name="largura" id="largura" placeholder="Digite a Largura" required> <br>
+                <label for="altura">Altura:</label>
+                <input type="number" name="altura" id="altura" placeholder="Digite a Altura" required> <br>
+                <input type="submit" value="Calcular Área" onclick="calcularAreaRetangulo()">
+            </form>
+        </div>
+
+        <div id="resultado">
+
+        </div>
+    </main>
+
+    <script src="scriptsjs/script02.js"></script>
+</body>
+</html>
