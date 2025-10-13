@@ -18,6 +18,13 @@ h1 {
     color: #333;
 }
 
+p {
+    font-size: .9em;
+    color: #555;
+    text-align: justify;
+    line-height: 1.5;
+}
+
 form {
     display: flex;
     flex-direction: column;

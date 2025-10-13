@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palíndromo</title>
+    <link rel="stylesheet" href="estilos/style06-07.css">
+</head>
+<body>
+    <main>
+        <h1>Palíndromo</h1>
+        <p>A função vai retornar verdadeiro se a string (Palavra) for um palíndromo (lê-se da mesma forma de trás para frente, ignorando case e espaços), e falso caso contrário.</p>
+        <form onsubmit="ehPalindromo(event)" method="post">
+            <label for="palavra">Digite uma palavra ou frase:</label>
+            <input type="text" name="inputTexto" id="inputTexto" required>
+            <button type="submit">Verificar</button>
+        </form>
+
+        <div id="resultado"></div>
+    </main>
+
+    <script src="scriptsjs/script07.js"></script>
+</body>
+</html>
