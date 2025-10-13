@@ -12,6 +12,11 @@
             padding: 1rem 3rem;
         }
 
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
         button {
             background-color: #0d520d;
             font-size: 1.5rem;
@@ -23,39 +28,65 @@
             box-shadow: 0 0 10px #27ff77;
         }
 
+        button:hover {
+            background-color: #27ff77;
+            color: black;
+            box-shadow: 0 0 20px #0d520d;
+        }
+
         div#texto {
             width: 100%;
             background-color: white;
-            color: black;
+            color: #073007;
             padding: 1rem;
             margin-top: 1rem;
             font-size: 1.5rem;
             border-radius: 8px;
         }
+
+        form {
+            margin-top: 1.5rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
         input {
-            background-color: #2a0c5a;
-            color: white;
-            margin-top: 1rem;
-            padding: 0.5rem;
             font-size: 1.2rem;
+            padding: 6px 10px;
+            margin: 0.5rem;
             border-radius: 6px;
-            border: 1px solid #250a50;
-            width: 200px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            border: 1px solid #27ff77;
+            box-shadow: 0 0 5px #27ff77;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #0d520d;
+            border: 1px solid #0d520d;
+        }
+
+        label {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <h1>Mensagem de boas vindas</h1>
     <button onclick="mensagem()">Saudação</button>
-    <div id="texto">Usuarios</div>
-    
-    <input type="text" name="nome" id="nome">
-    <input type="number" name="idade" id="idade">
-    <input type="text" name="cidade" id="cidade">
-    <input type="text" name="profissao" id="profissao">
+
+    <div id="texto"></div>
+
+    <form method="post">
+        <label for="nome">Seu Nome: </label>
+        <input type="text" name="nome" id="nome"> <br>
+        <label for="idade">Sua Idade: </label>
+        <input type="number" name="idade" id="idade"> <br>
+        <label for="cidade">Sua Cidade: </label>
+        <input type="text" name="cidade" id="cidade"> <br>
+        <label for="profissao">Sua Profissão: </label>
+        <input type="text" name="profissao" id="profissao">
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
