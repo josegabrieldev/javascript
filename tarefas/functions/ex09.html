@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Função de Alta Ordem</title>
+    <link rel="stylesheet" href="estilos/style09.css">
+</head>
+<body>
+    <main class="card">
+        <h1>Função de Alta Ordem | Callback</h1>
+        <div row>
+            <input type="number" name="num1" id="num1" placeholder="Número 1">
+            <input type="number" name="num2" id="num2" placeholder="Número 2">
+        </div>
+
+        <div class="row">
+            <select name="operacaoSelect" id="operacaoSelect" aria-label="Escolha a Operação">
+                <option value="multiplicar">Multiplicar</option>
+                <option value="somar">Somar</option>
+                <option value="subtrair">Subtrair</option>
+                <option value="dividir">Dividir</option>
+            </select>
+
+            <button id="btnExecutar">Executar</button>
+            <button id="btnLimpar">Limpar</button>
+        </div>
+
+        <div id="saida">Resultado aparecerá aqui</div>
+        <small>Observação: a função <code>aplicarOperacao</code> recebe dois números e uma função (callback) para executar.</small>
+    </main>
+
+    <script src="scriptsjs/script09.js"></script>
+</body>
+</html>
