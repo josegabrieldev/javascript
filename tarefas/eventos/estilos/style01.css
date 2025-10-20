@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  color: #2c2c2c;
+}
+
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff8e1;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid #ff9800;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ff5722;
+  text-shadow: 2px 2px #ffc107;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #3f51b5;
+  border-bottom: 2px dashed #ff9800;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.eventos {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #fff3e0;
+  border-radius: 8px;
+  border: 2px solid #ffcc80;
+}
+
+.eventos #contador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.eventos #contador button {
+    height: 70px;
+}
+
+.botoes {
+  width: 150px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+#btn1 {
+  display: block;
+  margin: auto;
+}
+
+botoes:active {
+  transform: scale(0.9);
+}
+
+.botoes:hover {
+  background-color: #e64a19;
+}
+
+#retangulo {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(5, 5, 196);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+#quadrado {
+  width: 100%;
+  height: 100px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+#quadrado:hover {
+  transform: scale(1.03);
+  background-color: #388e3c;
+}
+
+#conta-cliques,
+#mensagem,
+#cor-atual {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2em;
+  color: #ff4081;
+  background-color: #fff0f5;
+  border: 3px dashed #ff80ab;
+  padding: 15px 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 0 15px rgba(255, 64, 129, 0.4);
+  transition: transform 0.2s ease-in-out;
+}
+
+#conta-cliques:active {
+  transform: scale(1.1);
+}
