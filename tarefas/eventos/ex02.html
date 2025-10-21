@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 Eventos Usando DOM</title>
+    <link rel="stylesheet" href="estilos/style02.css">
+  </head>
+  <body>
+    <main>
+      <h1>4 Eventos Usando DOM (5 á 8)</h1>
+
+      <section class="eventos">
+        <h2>Validação em Tempo Real</h2>
+        <label for="campo">Digite uma senha: </label>
+        <input type="text" name="campo" id="campo" placeholder="Digite uma senha" />
+        <p id="erro"></p>
+      </section>
+
+      <section class="eventos">
+        <h2>Submissão de Formulário Controlada</h2>
+        <form action="dados.php" method="post" id="meu-form">
+            <label for="campo-nome">Seu Nome:</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
+            <button type="submit">Enviar</button>
+            <div id="mostrar-valor"></div>
+        </form>
+      </section>
+
+      <section class="eventos">
+        <h2>Captura de Teclas</h2>
+        <p>Pressione uma Tecla...</p>
+        <p id="tecla-pressionada"></p>
+      </section>
+
+      <section class="eventos">
+        <h2>Criação de Lista Dinâmica</h2>
+        <h3>Lista de Estudos</h3>
+        <label for="item">Digite um Item: </label>
+        <input type="text" name="item" id="item" placeholder="Digite um item">
+        <button id="adicionar-item">Adicionar Item</button>
+        <ul id="lista">
+
+        </ul>
+      </section>
+    </main>
+
+    <script src="js/script02.js"></script>
+  </body>
+</html>
