@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+/* --- 1. CONFIGURAÇÕES GLOBAIS --- */
+:root {
+    --cor-principal: #007bff; /* Azul Primário */
+    --cor-secundaria: #6c757d; /* Cinza Suave */
+    --cor-fundo: #f4f7f9; /* Fundo Levemente Azulado */
+    --cor-sucesso: #28a745;
+    --cor-aviso: #ffc107;
+    --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-fundo);
+    color: #343a40;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: var(--sombra-padrao);
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--cor-principal);
+    border-bottom: 2px solid var(--cor-principal);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-weight: 300; /* Leve para um toque moderno */
+}
+
+h2 {
+    color: var(--cor-secundaria);
+    margin-top: 0;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+/* --- 2. LAYOUT DAS SEÇÕES DE EVENTOS --- */
+.eventos {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.eventos:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* --- 3. ESTILO EXERCÍCIO 9: DELEGAÇÃO DE EVENTOS --- */
+
+#lista-container {
+    list-style-type: none; /* Remove marcadores padrão */
+    padding: 0;
+    border: 1px dashed #ced4da;
+    border-radius: 4px;
+    max-height: 250px;
+    overflow-y: auto; /* Adiciona barra de rolagem se a lista crescer */
+}
+
+#lista-container li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none; /* Impede seleção de texto ao clicar */
+}
+
+#lista-container li:last-child {
+    border-bottom: none;
+}
+
+#lista-container li:hover {
+    background-color: #e2f0ff; /* Fundo leve ao passar o mouse */
+}
+
+/* Estilo para o item selecionado (adicionado via JS) */
+.selecionado { 
+    background-color: var(--cor-aviso) !important; /* Destaque amarelo */
+    color: #343a40;
+    font-weight: bold;
+}
+
+#info {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+/* --- 4. ESTILO EXERCÍCIO 10: PROPAGAÇÃO (Bubbling) --- */
+
+/* Cores e dimensões originais dos seus elementos, mas com margem ajustada */
+#pai {
+    width: 400px;
+    background-color: rgb(13, 95, 24); /* Verde */
+    color: white;
+    padding: 1.5rem;
+    margin: 20px 0 10px 0; /* Ajuste para não ter margin auto */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-align: left;
+}
+
+#filho {
+    width: 300px;
+    background-color: rgb(17, 56, 94); /* Azul */
+    color: white;
+    padding: 1.5rem;
+    margin: 15px 0 15px 10px; /* Deslocamento para visualização */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#neto {
+    width: 200px;
+    background-color: rgb(118, 32, 199); /* Roxo */
+    color: white;
+    padding: 1.5rem;
+    margin: 15px 0 0 10px; /* Deslocamento para visualização */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#mostrar-clique {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--cor-principal);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    text-align: center;
+    min-height: 20px;
+}
