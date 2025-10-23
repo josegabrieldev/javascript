@@ -14,7 +14,6 @@ botaoAdicionarFruta.addEventListener("click", () => {
     );
   } else {
     listaFrutas.push(valorFruta);
-    console.log(`Lista de frutas: ${listaFrutas.join(", ")}`);
     mostrarListaFrutas.innerHTML = `Lista de frutas: ${listaFrutas.join(", ")}`;
     itemFruta.value = "";
     itemFruta.focus();
@@ -22,23 +21,32 @@ botaoAdicionarFruta.addEventListener("click", () => {
 });
 
 botaoRemoverPrimeiroItem.addEventListener("click", () => {
-  console.log(`Lista de frutas antes: ${listaFrutas.join(", ")}`);
-  mostrarListaFrutas.innerHTML = `Lista de frutas antes: ${listaFrutas.join(
-    ", "
-  )} <br>`;
+  if (listaFrutas.length > 0) {
+    mostrarListaFrutas.innerHTML = `Lista de frutas antes: ${listaFrutas.join(
+      ", "
+    )} <br>`;
 
-  listaFrutas.shift();
-  console.log(`Lista de frutas depois da remoção: ${listaFrutas.join(", ")}`);
-  mostrarListaFrutas.innerHTML += `Lista de frutas depois da remoção: ${listaFrutas.join(
-    ", "
-  )}`;
+    listaFrutas.shift();
+    mostrarListaFrutas.innerHTML += `Lista de frutas após remoção: ${listaFrutas.join(
+      ", "
+    )}`;
+  } else {
+    alert('Não à nenhum item na lista. Adicione ao menos uma fruta e clique novamente para remover o (O primeiro item)')
+  }
 });
 
 botaoInverterOrdem.addEventListener("click", () => {
-  console.log(`Lista de frutas: ${listaFrutas.join(", ")}`);
-  mostrarListaFrutas.innerHTML = `Lista de frutas: ${listaFrutas.join(", ")} <br>`
-
-  listaFrutas.reverse();
-  console.log(`Lista de frutas invertida: ${listaFrutas.join(", ")}`);
-  mostrarListaFrutas.innerHTML += `Lista de frutas invertida: ${listaFrutas.join(", ")}`
+  if (listaFrutas.length === 0) {
+    alert(
+      "Não tem nenhuma fruta na lista, digite algumas frutas a lista e depois inverta ela"
+    );
+  } else {
+    mostrarListaFrutas.innerHTML = `Lista de frutas: ${listaFrutas.join(
+      ", "
+    )} <br>`;
+    listaFrutas.reverse();
+    mostrarListaFrutas.innerHTML += `Lista de frutas invertida: ${listaFrutas.join(
+      ", "
+    )}`;
+  }
 });
