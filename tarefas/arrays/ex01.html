@@ -10,7 +10,7 @@
     <main>
       <h1>Arrays JavaScript</h1>
 
-      <section id="eventos">
+      <section class="eventos" id="ex01">
         <h2>Inversão e Concatenação</h2>
         <label for="fruta">Digite algumas frutas:</label>
         <input
@@ -29,7 +29,7 @@
         <div id="mostrar-frutas"></div>
       </section>
 
-      <section id="eventos">
+      <section class="eventos" id="ex02">
         <h2>🔎 Posição do nome, retornando o Índice</h2>
 
         <input type="text" id="nome-busca" placeholder="Digite seu nome..." />
@@ -38,30 +38,46 @@
         <p id="resultado"></p>
       </section>
 
-      <section id="eventos">
+      <section class="eventos" id="ex03">
         <h2>Verificação de existência</h2>
         <h3>Lista de Compras</h3>
 
-        <div>
+        <div class="itens-lista">
           <label for="item-lista">Colocar Item na Lista:</label>
           <input type="text" name="item-lista" id="item-lista" />
-          <button type="submit" id="adicionar-item">Adicionar Item a Lista</button>
+          <button type="submit" id="adicionar-item">
+            Adicionar Item a Lista
+          </button>
         </div>
 
-        <div>
+        <div class="itens-lista">
           <label for="item-busca">Procurar Item na Lista:</label>
           <input type="text" name="item-busca" id="item-busca" />
-          <button type="submit" id="procurar-item">Procurar Item na Lista</button>
+          <button type="submit" id="procurar-item">
+            Procurar Item na Lista
+          </button>
         </div>
 
-        <div>
+        <div id="botoes-lista">
           <button id="mostrar-lista">Mostrar Lista</button>
           <button id="limpar-lista">Limpar Lista</button>
-      </div>
+        </div>
 
         <p id="res-lista"></p>
       </section>
-      <section id="eventos"></section>
+
+      <section class="eventos" id="ex04">
+        <h2>Conversão de String e Formatação</h2>
+        <label for="input-csv">Itens CSV (separados por vírgula):</label>
+        <input
+          type="text"
+          id="input-csv"
+          placeholder="Ex: html, css, js, dom"
+        />
+        <button id="botao-processar">Processar e Formatar</button>
+
+        <p id="resultado-string"></p>
+      </section>
     </main>
 
     <script src="js/script01.js"></script>

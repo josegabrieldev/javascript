@@ -341,3 +341,21 @@ botaoLimparLista.addEventListener("click", () => {
     mostrarLista.textContent = "A lista foi limpa!";
   }
 });
+
+// Evento Conversão de String e Formatação
+const inputCSV = document.querySelector("#input-csv");
+const botaoProcessar = document.querySelector("#botao-processar");
+const resultadoString = document.querySelector("#resultado-string");
+
+botaoProcessar.addEventListener("click", () => {
+  if (inputCSV.value.trim() === "") {
+    alert("Digite itens na lista para poder processar e formatar");
+  } else {
+    const textoUsuario = inputCSV.value;
+    const listaUsuario = textoUsuario.split(",");
+    const listaLimpa = listaUsuario.map((item) => item.trim().toLowerCase());
+    const stringFinal = listaLimpa.join("-");
+
+    resultadoString.innerHTML = stringFinal;
+  }
+});
