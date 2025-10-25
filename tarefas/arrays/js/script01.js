@@ -54,132 +54,290 @@ botaoInverterOrdem.addEventListener("click", () => {
 });
 
 //Evento Encontrando o Índice correspondente
-
-const rankingNomesBrasil = [
-  { posicao: 1, nome: "Miguel" },
-  { posicao: 2, nome: "Helena" },
-  { posicao: 3, nome: "Arthur" },
-  { posicao: 4, nome: "Alice" },
-  { posicao: 5, nome: "Gael" },
-  { posicao: 6, nome: "Laura" },
-  { posicao: 7, nome: "Heitor" },
-  { posicao: 8, nome: "Maria Alice" },
-  { posicao: 9, nome: "Theo" },
-  { posicao: 10, nome: "Valentina" },
-  { posicao: 11, nome: "Davi" },
-  { posicao: 12, nome: "Heloísa" },
-  { posicao: 13, nome: "Gabriel" },
-  { posicao: 14, nome: "Maria Clara" },
-  { posicao: 15, nome: "Bernardo" },
-  { posicao: 16, nome: "Sophia" },
-  { posicao: 17, nome: "Samuel" },
-  { posicao: 18, nome: "Manuela" },
-  { posicao: 19, nome: "Pedro" },
-  { posicao: 20, nome: "Isabella" },
-  { posicao: 21, nome: "Benício" },
-  { posicao: 22, nome: "Júlia" },
-  { posicao: 23, nome: "Isaac" },
-  { posicao: 24, nome: "Luna" },
-  { posicao: 25, nome: "Lorenzo" },
-  { posicao: 26, nome: "Cecília" },
-  { posicao: 27, nome: "Anthony" },
-  { posicao: 28, nome: "Giovanna" },
-  { posicao: 29, nome: "Benjamin" },
-  { posicao: 30, nome: "Isadora" },
-  { posicao: 31, nome: "Guilherme" },
-  { posicao: 32, nome: "Eloá" },
-  { posicao: 33, nome: "João" },
-  { posicao: 34, nome: "Liz" },
-  { posicao: 35, nome: "Matheus" },
-  { posicao: 36, nome: "Mariana" },
-  { posicao: 37, nome: "Nicolas" },
-  { posicao: 38, nome: "Aurora" },
-  { posicao: 39, nome: "Lucas" },
-  { posicao: 40, nome: "Lívia" },
-  { posicao: 41, nome: "Enzo" },
-  { posicao: 42, nome: "Esther" },
-  { posicao: 43, nome: "Henrique" },
-  { posicao: 44, nome: "Clara" },
-  { posicao: 45, nome: "Daniel" },
-  { posicao: 46, nome: "Antonella" },
-  { posicao: 47, nome: "Eduardo" },
-  { posicao: 48, nome: "Sarah" },
-  { posicao: 49, nome: "Cauã" },
-  { posicao: 50, nome: "Lorena" },
-  { posicao: 51, nome: "Leonardo" },
-  { posicao: 52, nome: "Beatriz" },
-  { posicao: 53, nome: "Vicente" },
-  { posicao: 54, nome: "Alícia" },
-  { posicao: 55, nome: "Bento" },
-  { posicao: 56, nome: "Maitê" },
-  { posicao: 57, nome: "Lucca" },
-  { posicao: 58, nome: "Catarina" },
-  { posicao: 59, nome: "Noah" },
-  { posicao: 60, nome: "Rafaela" },
-  { posicao: 61, nome: "Otávio" },
-  { posicao: 62, nome: "Ana Liz" },
-  { posicao: 63, nome: "Calebe" },
-  { posicao: 64, nome: "Laís" },
-  { posicao: 65, nome: "Felipe" },
-  { posicao: 66, nome: "Rebeca" },
-  { posicao: 67, nome: "João Miguel" },
-  { posicao: 68, nome: "Maria Luísa" },
-  { posicao: 69, nome: "Ryan" },
-  { posicao: 70, nome: "Yasmin" },
-  { posicao: 71, nome: "Caio" },
-  { posicao: 72, nome: "Olívia" },
-  { posicao: 73, nome: "Augusto" },
-  { posicao: 74, nome: "Agatha" },
-  { posicao: 75, nome: "João Pedro" },
-  { posicao: 76, nome: "Maria Júlia" },
-  { posicao: 77, nome: "Bryan" },
-  { posicao: 78, nome: "Stella" },
-  { posicao: 79, nome: "Pietro" },
-  { posicao: 80, nome: "Ana Clara" },
-  { posicao: 81, nome: "Isaías" },
-  { posicao: 82, nome: "Pietra" },
-  { posicao: 83, nome: "Luiz Miguel" },
-  { posicao: 84, nome: "Melissa" },
-  { posicao: 85, nome: "Vinícius" },
-  { posicao: 86, nome: "Ana Laura" },
-  { posicao: 87, nome: "Emanuel" },
-  { posicao: 88, nome: "Bianca" },
-  { posicao: 89, nome: "Rael" },
-  { posicao: 90, nome: "Isabelly" },
-  { posicao: 91, nome: "Yuri" },
-  { posicao: 92, nome: "Maya" },
-  { posicao: 93, nome: "Anthony Gabriel" },
-  { posicao: 94, nome: "Letícia" },
-  { posicao: 95, nome: "Michelle" },
-  { posicao: 96, nome: "Jade" },
-  { posicao: 97, nome: "Davi Lucca" },
-  { posicao: 98, nome: "Milena" },
-  { posicao: 99, nome: "Emanuelly" },
-  { posicao: 100, nome: "Valéria" },
+const nomes = [
+  "Miguel",
+  "Helena",
+  "Arthur",
+  "Alice",
+  "Gael",
+  "Laura",
+  "Heitor",
+  "Maria Alice",
+  "Theo",
+  "Valentina",
+  "Davi",
+  "Heloísa",
+  "Gabriel",
+  "Maria Clara",
+  "Bernardo",
+  "Sophia",
+  "Samuel",
+  "Manuela",
+  "Pedro",
+  "Isabella",
+  "Benício",
+  "Júlia",
+  "Isaac",
+  "Luna",
+  "Lorenzo",
+  "Cecília",
+  "Anthony",
+  "Giovanna",
+  "Benjamin",
+  "Isadora",
+  "Guilherme",
+  "Eloá",
+  "João",
+  "Liz",
+  "Matheus",
+  "Mariana",
+  "Nicolas",
+  "Aurora",
+  "Lucas",
+  "Lívia",
+  "Enzo",
+  "Esther",
+  "Henrique",
+  "Clara",
+  "Daniel",
+  "Antonella",
+  "Eduardo",
+  "Sarah",
+  "Cauã",
+  "Lorena",
+  "Leonardo",
+  "Beatriz",
+  "Vicente",
+  "Alícia",
+  "Bento",
+  "Maitê",
+  "Lucca",
+  "Catarina",
+  "Noah",
+  "Rafaela",
+  "Otávio",
+  "Ana Liz",
+  "Calebe",
+  "Laís",
+  "Felipe",
+  "Rebeca",
+  "João Miguel",
+  "Maria Luísa",
+  "Ryan",
+  "Yasmin",
+  "Caio",
+  "Olívia",
+  "Augusto",
+  "Agatha",
+  "João Pedro",
+  "Maria Júlia",
+  "Bryan",
+  "Stella",
+  "Pietro",
+  "Ana Clara",
+  "Isaías",
+  "Pietra",
+  "Luiz Miguel",
+  "Melissa",
+  "Vinícius",
+  "Ana Laura",
+  "Emanuel",
+  "Bianca",
+  "Rael",
+  "Isabelly",
+  "Yuri",
+  "Maya",
+  "Anthony Gabriel",
+  "Letícia",
+  "Michelle",
+  "Jade",
+  "Davi Lucca",
+  "Milena",
+  "Emanuelly",
+  "Valéria",
+  "André",
+  "Camila",
+  "Carlos",
+  "Fernanda",
+  "Rafael",
+  "Patrícia",
+  "Diego",
+  "Juliana",
+  "Rodrigo",
+  "Aline",
+  "Marcelo",
+  "Tatiane",
+  "Bruno",
+  "Vanessa",
+  "Renato",
+  "Carla",
+  "Fábio",
+  "Simone",
+  "Alex",
+  "Cristiane",
+  "Roberto",
+  "Adriana",
+  "Luciano",
+  "Daniela",
+  "Eduarda",
+  "Sérgio",
+  "Paula",
+  "Maurício",
+  "Verônica",
+  "Jorge",
+  "Natália",
+  "Paulo",
+  "Andreia",
+  "Vitor",
+  "Elaine",
+  "Thiago",
+  "Sandra",
+  "Igor",
+  "Michele",
+  "Leandro",
+  "Rute",
+  "Alexandre",
+  "Débora",
+  "Francisco",
+  "Tainá",
+  "Edson",
+  "Bruna",
+  "Ivan",
+  "Lorraine",
+  "Rogério",
+  "Tatiana",
+  "Cristiano",
+  "Luana",
+  "Wallace",
+  "Jéssica",
+  "Murilo",
+  "Tamires",
+  "Caetano",
+  "Nathalia",
+  "Joaquim",
+  "Talita",
+  "Renan",
+  "Sabrina",
+  "Alan",
+  "Gisele",
+  "Jonas",
+  "Kelly",
+  "Danilo",
+  "Priscila",
+  "Ronaldo",
+  "Luan",
+  "Fabiana",
+  "José",
+  "Mônica",
+  "Antônio",
+  "Rayssa",
+  "Marcos",
+  "Thais",
+  "Joana",
+  "Isaque",
+  "Silvia",
+  "Mateus",
+  "Lorena",
+  "Otto",
+  "Marina",
+  "Ruan",
+  "Tereza",
+  "Cristina",
+  "Elisa",
+  "João Vitor",
+  "Nicole",
+  "Matheus Henrique",
+  "Luiz Felipe",
+  "Ana Beatriz",
+  "Enzo Gabriel",
+  "Maria Eduarda",
+  "Lucas Gabriel",
+  "Maria Fernanda",
+  "Pedro Henrique",
+  "Maria Vitória",
+  "João Guilherme",
+  "Maria Cecília",
+  "Henrique Miguel",
+  "Maria Helena",
+  "Luiz Gustavo",
+  "Maria Antônia",
+  "João Lucas",
+  "Maria Isabel",
+  "João Gabriel",
+  "Maria Rita",
 ];
+const resultado = document.getElementById("resultado");
+const inputNome = document.getElementById("nome-busca");
 
-document.getElementById("btn-pesquisar").addEventListener("click", () => {
-  const nomeInput = document.getElementById("nome-input");
-  const nomeDigitado = nomeInput.value.trim();
-  const resultado = document.getElementById("resultado");
+document.querySelector("#botao-pesquisar").addEventListener("click", () => {
+  const nomeBusca = inputNome.value;
+  const indiceEncontrado = nomes.indexOf(nomeBusca);
 
-  if (!nomeDigitado) {
-    resultado.textContent = "Por favor, digite um nome!";
-    return;
-  }
-
-  const nomeEncontrado = rankingNomesBrasil.find(
-    (item) => item.nome.toLowerCase() === nomeDigitado.toLowerCase()
-  );
-
-  if (nomeEncontrado) {
-    resultado.textContent = `🎉 O nome "${nomeEncontrado.nome}" está na posição "${nomeEncontrado.posicao}" do ranking!`;
+  if (indiceEncontrado >= 0) {
+    resultado.innerHTML = `O nome ${nomeBusca} foi encontrado com sucesso no índice: ${indiceEncontrado}!`;
   } else {
-    resultado.innerHTML = `😕 O nome "${nomeDigitado}" não foi encontrado no ranking. <br>
-    Se deseja incluir seu nome na lista fique a vontade para me mandar direct no instagram <br>
-    <strong> Instagram @josegabrieldev </strong>`;
+    resultado.innerHTML = `O nome ${nomeBusca} não foi encontrado!`;
   }
+});
 
-  nomeInput.value = "";
-  nomeInput.focus();
+// Evento de Verificação de Existência
+const inputItem = document.querySelector("#item-lista");
+const inputBusca = document.querySelector("#item-busca");
+
+const botaoAdicionarItem = document.getElementById("adicionar-item");
+const botaoProcurarItem = document.getElementById("procurar-item");
+const botaoMostrarLista = document.getElementById("mostrar-lista");
+const botaoLimparLista = document.getElementById("limpar-lista");
+
+const mostrarLista = document.querySelector("#res-lista");
+const listaCompras = [];
+
+botaoAdicionarItem.addEventListener("click", () => {
+  const itemLista = inputItem.value;
+
+  if (itemLista.trim() === "") {
+    alert("Digite um item de lista valido para suas compras!");
+  } else {
+    listaCompras.push(itemLista);
+    inputItem.value = "";
+    inputItem.focus();
+  }
+});
+
+botaoProcurarItem.addEventListener("click", () => {
+  if (listaCompras.length == 0) {
+    alert(
+      "Antes de procurar um item na sua lista, adicione um ou mais itens a ela"
+    );
+  } else {
+    const buscaItem = inputBusca.value.toLowerCase().trim();
+    const listaMinuscula = listaCompras.map((item) => item.toLowerCase());
+    const pesquisandoItem = listaMinuscula.includes(buscaItem);
+
+    const mensagemResultado = pesquisandoItem
+      ? `O item ${buscaItem} já consta na lista`
+      : `O item ${buscaItem} não consta na lista`;
+    mostrarLista.textContent = mensagemResultado;
+  }
+});
+
+botaoMostrarLista.addEventListener("click", () => {
+  if (listaCompras.length == 0) {
+    mostrarLista.textContent =
+      "A lista está vazia. Adicione no minímo um item!";
+  } else {
+    mostrarLista.innerHTML = `Minha lista de compras: <br> ${listaCompras.join(
+      ", "
+    )}`;
+  }
+});
+
+botaoLimparLista.addEventListener("click", () => {
+  if (listaCompras.length == 0) {
+    mostrarLista.textContent =
+      "Não há nada na lista para ser limpa. Por favor adicione algo antes de limpar!";
+  } else {
+    listaCompras.length = 0;
+    mostrarLista.textContent = "A lista foi limpa!";
+  }
 });

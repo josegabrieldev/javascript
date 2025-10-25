@@ -30,15 +30,37 @@
       </section>
 
       <section id="eventos">
-        <h2>🔎 Descubra a posição do seu nome!</h2>
+        <h2>🔎 Posição do nome, retornando o Índice</h2>
 
-        <input type="text" id="nome-input" placeholder="Digite seu nome..." />
-        <button id="btn-pesquisar">Pesquisar</button>
+        <input type="text" id="nome-busca" placeholder="Digite seu nome..." />
+        <button id="botao-pesquisar">Pesquisar</button>
 
         <p id="resultado"></p>
       </section>
 
-      <section id="eventos"></section>
+      <section id="eventos">
+        <h2>Verificação de existência</h2>
+        <h3>Lista de Compras</h3>
+
+        <div>
+          <label for="item-lista">Colocar Item na Lista:</label>
+          <input type="text" name="item-lista" id="item-lista" />
+          <button type="submit" id="adicionar-item">Adicionar Item a Lista</button>
+        </div>
+
+        <div>
+          <label for="item-busca">Procurar Item na Lista:</label>
+          <input type="text" name="item-busca" id="item-busca" />
+          <button type="submit" id="procurar-item">Procurar Item na Lista</button>
+        </div>
+
+        <div>
+          <button id="mostrar-lista">Mostrar Lista</button>
+          <button id="limpar-lista">Limpar Lista</button>
+      </div>
+
+        <p id="res-lista"></p>
+      </section>
       <section id="eventos"></section>
     </main>
 

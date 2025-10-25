@@ -172,7 +172,7 @@ button:active {
     font-size: 0.9em;
 }
 
-#nome-input {
+#nome-busca {
     display: block;
     width: 100%;
     padding: 12px 15px;
@@ -184,14 +184,14 @@ button:active {
     transition: all 0.3s ease;
 }
 
-#nome-input:focus {
+#nome-busca:focus {
     border-color: var(--cor-principal);
     box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
     outline: none;
     transform: scale(1.02);
 }
 
-#btn-pesquisar {
+#botao-pesquisar {
     display: block;
     width: 100%;
     background-color: var(--cor-principal);
@@ -205,7 +205,7 @@ button:active {
     transition: all 0.3s ease;
 }
 
-#btn-pesquisar:hover {
+#botao-pesquisar:hover {
     background-color: #2980b9;
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
@@ -231,6 +231,112 @@ button:active {
 
 #resultado:empty::before {
     content: "Digite seu nome acima e clique em pesquisar!";
+    color: #95a5a6;
+    font-weight: normal;
+    font-size: 0.95rem;
+}
+
+/* --- 5. ESTILO ESPECÍFICO PARA A SEÇÃO DE LISTA DE COMPRAS (EXERCÍCIO 3) --- */
+
+/* Estilo para os contêineres internos de input/botão */
+#eventos div {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os elementos quebrem a linha em telas pequenas */
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os elementos */
+    margin-bottom: 15px;
+}
+
+#eventos h3 {
+    color: #34495e; /* Azul Marinho Escuro */
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Estilo para garantir que o input ocupe o espaço necessário */
+#item-lista, 
+#item-busca {
+    flex-grow: 1; /* Permite que os inputs cresçam e preencham o espaço */
+    min-width: 180px; /* Garante um tamanho mínimo em telas menores */
+    padding: 12px;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-sizing: border-box; /* Garante que padding e border não alterem o tamanho total */
+}
+
+#item-lista:focus, 
+#item-busca:focus {
+    border-color: #2ecc71; /* Verde Sucesso */
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+    outline: none;
+    transform: scale(1.01);
+}
+
+/* Estilos de Botão Específicos para a Seção 3 */
+
+/* Adicionar Item */
+#adicionar-item {
+    background-color: #2ecc71; /* Verde */
+    color: white;
+    font-weight: 600;
+}
+#adicionar-item:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+/* Procurar Item */
+#procurar-item {
+    background-color: #f39c12; /* Amarelo Laranja */
+    color: white;
+    font-weight: 600;
+}
+#procurar-item:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+/* Mostrar Lista */
+#mostrar-lista {
+    background-color: #9b59b6; /* Roxo */
+    color: white;
+}
+#mostrar-lista:hover {
+    background-color: #8e44ad;
+    transform: scale(1.05);
+}
+
+/* Limpar Lista */
+#limpar-lista {
+    background-color: #e74c3c; /* Vermelho (Cor de Ação Destrutiva) */
+    color: white;
+}
+#limpar-lista:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Estilo para o Parágrafo de Resultado da Lista */
+#res-lista {
+    margin-top: 25px;
+    padding: 18px;
+    text-align: left;
+    font-size: 1.15rem;
+    color: #34495e;
+    background-color: #f8f9fa; /* Fundo leve para destaque */
+    border: 2px dashed #2ecc71; /* Borda verde */
+    border-radius: 10px;
+    min-height: 50px;
+    font-weight: normal;
+    white-space: pre-wrap; /* Mantém quebras de linha se o JS as adicionar */
+    animation: fadeIn 0.5s ease forwards;
+}
+
+#res-lista:empty::before {
+    content: "Aguardando itens ou resultado da pesquisa...";
     color: #95a5a6;
     font-weight: normal;
     font-size: 0.95rem;
