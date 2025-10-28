@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+/* 🌈 Paleta de Cores e Variáveis */
+:root {
+  --cor-principal: #0078ff;
+  --cor-secundaria: #2c3e50;
+  --cor-fundo: #f4f7fb;
+  --cor-sucesso: #27ae60;
+  --cor-alerta: #f39c12;
+  --cor-perigo: #e74c3c;
+  --sombra: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --radius: 10px;
+}
+
+/* 🌐 Estrutura Base */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-secundaria);
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--sombra);
+  max-width: 900px;
+  width: 100%;
+  padding: 40px;
+  transition: all 0.3s ease;
+}
+
+main:hover {
+  transform: scale(1.01);
+}
+
+/* 🔠 Títulos */
+h1 {
+  text-align: center;
+  color: var(--cor-principal);
+  border-bottom: 3px solid var(--cor-principal);
+  padding-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+h2 {
+  color: var(--cor-secundaria);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+small {
+  color: var(--cor-principal);
+}
+
+/* 🧩 Seções */
+.eventos {
+  background-color: #ffffff;
+  border: 1px solid #dcdde1;
+  border-left: 5px solid var(--cor-principal);
+  border-radius: var(--radius);
+  padding: 20px 25px;
+  margin-bottom: 30px;
+  box-shadow: var(--sombra);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.eventos:hover {
+  transform: translateY(-3px);
+  border-color: var(--cor-sucesso);
+}
+
+/* 🖋️ Labels e Inputs */
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #ccd1d9;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--cor-principal);
+  outline: none;
+}
+
+/* 🧠 Botões */
+button {
+  background-color: var(--cor-principal);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #005fcc;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ⚙️ Botões Especiais */
+#filtrar-caros,
+#botao-buscar-produto,
+#btn-voto-obrigatorio {
+  background-color: var(--cor-sucesso);
+}
+#filtrar-caros:hover,
+#botao-buscar-produto:hover,
+#btn-voto-obrigatorio:hover {
+  background-color: #1e8449;
+}
+
+#btn-nao-vota {
+  background-color: var(--cor-perigo);
+}
+#btn-nao-vota:hover {
+  background-color: #c0392b;
+}
+
+#btn-voto-opcional {
+  background-color: var(--cor-alerta);
+}
+#btn-voto-opcional:hover {
+  background-color: #d68910;
+}
+
+/* 🧱 Containers */
+.container-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.input-grupo {
+  background: #f7f9fc;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* 🗂️ Resultados e Listas */
+#lista-precos-aumentados,
+#lista-produtos-filtrados,
+#lista-produtos,
+#resultado-busca-produto,
+#array-original,
+#array-multiplicado,
+#resultado-votacao {
+  background-color: #f9fafb;
+  border: 1px dashed var(--cor-principal);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+  min-height: 40px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ✨ Destaques */
+.resultado-grande {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--cor-secundaria);
+}
+
+/* 📱 Responsivo */
+@media (max-width: 700px) {
+  main {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .container-botoes {
+    flex-direction: column;
+  }
+}
