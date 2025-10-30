@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays JavaScript</title>
+    <link rel="stylesheet" href="estilos/style03.css">
+  </head>
+  <body>
+    <main>
+      <h1>Arrays JavaScript</h1>
+
+      <section class="eventos" id="ex10">
+        <h2>Cálculo de Estoque Total (<small>reduce()</small>)</h2>
+
+        <div id="produto">
+          <label for="input-nome">Nome do Produto:</label>
+          <input type="text" name="input-nome" id="input-nome" />
+
+          <label for="input-preco">Preço do Produto:</label>
+          <input type="number" name="input-preco" id="input-preco" />
+
+          <label for="input-quantidade">Quantidade do Produto:</label>
+          <input type="number" name="input-quantidade" id="input-quantidade" />
+
+          <button id="adicionar-produto">Adicionar Produto</button>
+        </div>
+
+        <div id="previa-estoque">
+          <button id="mostrar-estoque">Mostrar Estoque</button>
+          <p id="estoque-produtos"></p>
+        </div>
+
+        <div id="calculo">
+          <button id="btn-calcular-estoque">Calcular Valor Total</button>
+          <p id="resultado-estoque"></p>
+        </div>
+      </section>
+
+      <section class="eventos" id="ex11">
+        <h2>Pipeline de Operações (<small>filter, map, reduce</small>)</h2>
+        <div id="campo-adicionar">
+          <label for="input-numero">Adicione alguns números:</label>
+          <input
+            type="number"
+            name="input-numero"
+            id="input-numero"
+            placeholder="5 Números Iniciais"
+          />
+          <button id="adicionar-numero">Adicionar Número</button>
+          <p id="lista-numeros"></p>
+        </div>
+
+        <div id="campo-pipeline">
+            <button id="btn-processar-pipeline">Processar e Somar</button>
+            <p id="resultado-pipeline"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/script03.js"></script>
+  </body>
+</html>
