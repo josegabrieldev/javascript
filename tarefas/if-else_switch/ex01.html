@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lógica Condicional</title>
+    <link rel="stylesheet" href="estilos/style01.css" />
+    <script src="js/script01.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>
+        Lógica Condicional <br />
+        (<small>if/else E switch</small>)
+      </h1>
+
+      <section class="eventos" id="ex01">
+        <h2>Descontos por Fidelidade</h2>
+        <div class="input-grupo-horizontal">
+          <div class="campo">
+            <label for="select-status">Selecione o Status:</label>
+            <select id="select-status">
+              <option value="BASICO">Básico</option>
+              <option value="VIP">VIP</option>
+              <option value="PREMIUM">Premium</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="input-valor-compra">Valor da Compra (R$):</label>
+            <input
+              type="text"
+              id="input-valor-compra"
+              placeholder="Ex: 450,50"
+            />
+          </div>
+        </div>
+
+        <button id="btn-calcular-desconto">Calcular Desconto</button>
+
+        <p id="resultado-desconto" class="resultado-grande"></p>
+      </section>
+
+      <section class="eventos"></section>
+      <section class="eventos"></section>
+      <section class="eventos"></section>
+      <section class="eventos"></section>
+    </main>
+  </body>
+</html>
