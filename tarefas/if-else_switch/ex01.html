@@ -41,10 +41,38 @@
         <p id="resultado-desconto" class="resultado-grande"></p>
       </section>
 
-      <section class="eventos"></section>
-      <section class="eventos"></section>
-      <section class="eventos"></section>
-      <section class="eventos"></section>
+      <section class="eventos" id="ex02">
+        <h2>Semáfaro de Pagamento (<small>if/else if</small>)</h2>
+        <p>Classificar o status de uma fatura com base  no número de dias de atraso.</p>
+        <label for="status">Dias de atraso:</label>
+        <input type="number" name="status" id="status" placeholder="ex: 3 pagamento atrasado">
+        <button id="verificar-status">Verificar Status</button>
+        <p id="resultado-status" class="resultado-grande"></p>
+      </section>
+
+      <section class="eventos" id="ex03">
+        <h2>Classificação de Dia da Semana (<small>switch</small>)</h2>
+        <label for="dia-semana">Digite o dia da semana:</label>
+        <input type="number" name="dia-semana" id="dia-semana" placeholder="ex: 5 quinta feira">
+        <button id="btn-dia-semana">Ver Dia da Semana</button>
+        <p id="resultado-dia-semana"></p>
+      </section>
+      <section class="eventos" id="ex04">
+        <h2>Simulação de Caixa Eletrônico (<small>if/else com múltiplos operadores</small>)</h2>
+        <label for="valor-saque">Digite o valor do seu saque:</label>
+        <input type="number" name="valor-saque" id="valor-saque">
+        <button id="btn-fazer-saque">Fazer Saque</button>
+        <p id="resultado-saque"></p>
+      </section>
+
+      <section class="eventos" id="ex05">
+        <h2>Lógica para Categorização de Produtos  (<small>switch com agrupamento</small>)</h2>
+        <p>Insira o código (letra A-Z) para ver a categoria do produto.</p>
+        <label for="input-codigo-produto">Código do Produto (<small>A-Z</small>)</label>
+        <input type="text" name="input-codigo-produto" id="input-codigo-produto" placeholder="Ex: A, J, G, C, F, M" maxlength="1">
+        <button id="btn-classificar-produto">Classicar</button>
+        <p id="resultado-produto" class="resultado-grande"></p>
+      </section>
     </main>
   </body>
 </html>
