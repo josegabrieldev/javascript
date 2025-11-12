@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laços de Repetições</title>
+    <script src="js/script01.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>
+        Estrutura de Repetições com (<small>for, while e do while</small>)
+      </h1>
+      <section id="ex01">
+        <h2>Gerador de Tabuada</h2>
+        <label for="numero">Digite um Número:</label>
+        <input
+          type="number"
+          name="numero"
+          id="numero"
+          placeholder="Qualquer número"
+        />
+        <button id="btn-gerar-tabuada">Gerar Tabuada</button>
+        <h3 id="titulo-tabuada"></h3>
+        <div id="resultado-tabuada"></div>
+      </section>
+
+      <section id="ex02">
+        <h2>Contador Regressivo</h2>
+        <label for="input-contagem">Início da Contagem:</label>
+        <input
+          type="number"
+          name="input-contagem"
+          id="input-contagem"
+          placeholder="exemplo: 10"
+        />
+        <button id="btn-iniciar-contagem">Iniciar Contagem</button>
+        <div id="resultado-contagem"></div>
+      </section>
+
+      <section id="ex03">
+        <h2>Adivinhe o número secreto</h2>
+        <button id="gerar-numero-secreto">Gerar Número Secreto</button>
+
+        <label for="input-palpite">Digite um Palpite</label>
+        <input
+          type="number"
+          name="input-palpite"
+          id="input-palpite"
+          placeholder="Entre 1 e 10"
+        />
+        <button id="enviar-palpite">Enviar Palpite</button>
+
+        <p id="mensagem"></p>
+        <p id="contar-tentativas">Número de tentativas 0</p>
+      </section>
+
+      <section id="ex04">
+        <h2>Calculadora de Média de Notas</h2>
+        <h3>Digite suas 4 notas abaixo: de 0 a 10</h3>
+
+        <label for="input-aluno">Nome do Aluno</label>
+        <input type="text" name="input-aluno" id="input-aluno">
+
+        <label for="input-notas">Digite as Suas Notas</label>
+        <input type="number" name="input-notas" id="input-notas" placeholder="Ex: 7">
+        <button id="btn-adicionar-nota">Adicionar Nota</button>
+        <h3 id="titulo-notas"></h3>
+        <ul id="lista-notas"></ul>
+
+        <button id="btn-calcular-media">Calcular Média</button>
+        <p id="resultado-media"></p>
+      </section>
+      <section id="ex05">
+        <h2>Simulador de Juros Compostos</h2>
+
+        <label for="capital">Capital inicial 💰</label>
+        <input type="number" name="capital" id="capital" placeholder="Ex: 1000">
+
+        <label for="taxa-juros">Taxa de juros mensal (%) 📈</label>
+        <input type="number" name="taxa-juros" id="taxa-juros" placeholder="Ex: 5">
+
+        <label for="periodo">Período (em meses) ⏳</label>
+        <input type="number" name="periodo" id="periodo" placeholder="Ex: 12">
+
+        <button id="btn-calcular-juros">Calcular Juros</button>
+        <div id="resultado-juros"></div>
+      </section>
+    </main>
+  </body>
+</html>
