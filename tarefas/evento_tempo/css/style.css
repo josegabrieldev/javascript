@@ -1,0 +1,12 @@
+#jogo {
+  width: 300px;
+  height: 200px;
+  background: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
