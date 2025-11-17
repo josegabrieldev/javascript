@@ -1,12 +1,204 @@
-#jogo {
-  width: 300px;
-  height: 200px;
-  background: gray;
-  color: white;
+/* =============================
+   🎨 Design System (variáveis)
+============================= */
+:root {
+  --background: hsl(210, 40%, 98%);
+  --foreground: hsl(222, 47%, 11%);
+  --primary: hsl(217, 91%, 60%);
+  --secondary: hsl(187, 85%, 53%);
+  --success: hsl(142, 76%, 36%);
+  --destructive: hsl(0, 84%, 60%);
+  --border: hsl(214, 32%, 85%);
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+/* =============================
+   🔄 Dark Mode automático
+============================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(222, 47%, 11%);
+    --foreground: hsl(210, 40%, 98%);
+    --border: hsl(217, 33%, 22%);
+    --destructive: hsl(0, 63%, 31%);
+  }
+}
+
+/* =============================
+   🧼 Reset
+============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   🏠 Estrutura principal
+============================= */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", sans-serif;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+section {
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+@media (prefers-color-scheme: dark) {
+  section {
+    background: hsl(217, 33%, 17%);
+  }
+}
+
+section:hover {
+  transform: translateY(-3px);
+}
+
+/* =============================
+   🧩 Títulos dos exercícios
+============================= */
+section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+/* =============================
+   🧱 Inputs e botões
+============================= */
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.4rem 0 1rem 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px hsla(217, 91%, 60%, 0.3);
+  outline: none;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =============================
+   🕰 Relógio (ex03)
+============================= */
+#relogio {
+  font-size: 2.2rem;
+  text-align: center;
+  padding: 1rem;
+  background: var(--secondary);
+  color: white;
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+/* =============================
+   🎮 Jogo do Reflexo (ex07)
+============================= */
+#jogo {
+  width: 100%;
+  height: 180px;
+  display: flex;
   align-items: center;
-  font-size: 24px;
+  justify-content: center;
+  border-radius: var(--radius);
   cursor: pointer;
   user-select: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: gray;
+  color: white;
+  transition: var(--transition);
+}
+
+#jogo:hover {
+  transform: scale(1.03);
+}
+
+#jogo.valendo {
+  background: var(--success);
+}
+
+#jogo.perdeu {
+  background: var(--destructive);
+}
+
+/* =============================
+   🔔 Mensagens gerais
+============================= */
+#mensagem-atraso,
+#mensagem-contagem,
+#mostrar-contagem-notificacao,
+#mensagem-temporizador,
+#mostrar-contagem-crescente {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+/* =============================
+   📱 Mobile
+============================= */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  section {
+    padding: 1rem;
+  }
+
+  #jogo {
+    height: 140px;
+    font-size: 1.2rem;
+  }
 }
