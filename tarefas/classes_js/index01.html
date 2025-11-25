@@ -8,40 +8,82 @@
     <script src="js/script01.js" defer></script>
   </head>
   <body>
-    <footer>
+    <header>
       <h1>🚀 Exercícios de Classes em JavaScript - nível empresa</h1>
-    </footer>
+    </header>
 
     <main>
-      <section id="ex01">
-        <h2>✔️ 1. Classe de Usuário com Validações</h2>
+      <section id="cadastro">
+        <h2>🔹 Cadastro de Usuário</h2>
 
-        <section id="cadastro">
-            <h3>🔹 Seção 1 — Cadastro</h3>
-            <label for="nome-cadastro">Nome:</label>
-            <input type="text" name="nome-cadastro" id="nome-cadastro" placeholder="Nome completo">
+        <div class="card-cadastro">
+          <label for="nome-cadastro">Nome:</label>
+          <input
+            type="text"
+            name="nome-cadastro"
+            id="nome-cadastro"
+            placeholder="Nome completo"
+          />
+          <label for="email-cadastro">Email:</label>
+          <input
+            type="email"
+            name="email-cadastro"
+            id="email-cadastro"
+            placeholder="Seu email"
+          />
+          <label for="senha-cadastro">Senha:</label>
+          <input
+            type="password"
+            name="senha-cadastro"
+            id="senha-cadastro"
+            placeholder="Digite uma senha forte"
+          />
+          <button id="btn-cadastrar">Cadastrar</button>
+          <div id="mensagem-cadastro"></div>
 
-            <label for="email-cadastro">Email:</label>
-            <input type="email" name="email-cadastro" id="email-cadastro" placeholder="Seu email">
+        </div>
+      </section>
 
-            <label for="senha-cadastro">Senha:</label>
-            <input type="password" name="senha-cadastro" id="senha-cadastro" placeholder="Digite uma senha forte">
+      <section id="login">
+        <h2>🔹 Login de Usuário</h2>
+        <label for="email-login">Email:</label>
+        <input
+          type="email"
+          name="email-login"
+          id="email-login"
+          placeholder="Email cadastrado"
+        />
 
-            <button id="btn-cadastrar">Cadastrar</button>
-            <div id="mensagem-cadastro"></div>
-        </section>
+        <label for="senha-login">Senha:</label>
+        <input
+          type="password"
+          name="senha-login"
+          id="senha-login"
+          placeholder="Senha cadastrada"
+        />
 
-        <section id="login">
-            <h3>🔹 Seção 2 — Login</h3>
-            <label for="email-login">Email:</label>
-            <input type="email" name="email-login" id="email-login" placeholder="Email cadastrado">
+        <button id="btn-login">Entrar</button>
+        <div id="mensagem-login"></div>
+      </section>
 
-            <label for="senha-login">Senha:</label>
-            <input type="password" name="senha-login" id="senha-login" placeholder="Senha cadastrada">
+      <section id="carrinho">
+        <h2>🛒 Carrinho de Compras</h2>
 
-            <button id="btn-login">Entrar</button>
-            <div id="mensagem-login"></div>
-        </section>
+        <label for="produto-select">Produto:</label>
+        <select id="produto-select"></select>
+        <ul id="lista-produtos"></ul>
+
+        <label for="produto-qtd-cart">Quantidade:</label>
+        <input type="number" id="produto-qtd-cart" min="1" value="1" />
+
+        <button id="btn-add-carrinho">Adicionar ao Carrinho</button>
+        <p id="aviso-carrinho"></p>
+
+        <h3>Itens no Carrinho:</h3>
+        <ul id="lista-carrinho"></ul>
+
+        <h4>Total a pagar é de <span id="total-carrinho">0.00</span> reais</h4>
+      </section>
     </main>
   </body>
 </html>

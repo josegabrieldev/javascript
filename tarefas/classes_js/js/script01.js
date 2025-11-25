@@ -225,3 +225,195 @@ btnLogin.addEventListener("click", async () => {
     btnLogin.disabled = false;
   }
 });
+
+class Produto {
+  constructor(nome, preco, quantidade) {
+    this.nome = nome;
+    this.preco = preco;
+    this.quantidade = quantidade;
+  }
+
+  temEstoque(qtd) {
+    return this.quantidade >= qtd;
+  }
+
+  reduzirEstoque(qtd) {
+    if (this.temEstoque(qtd)) {
+      this.quantidade -= qtd;
+    }
+  }
+
+  aumentarEstoque(qtd) {
+    this.quantidade += qtd;
+  }
+}
+
+const produtos = [
+  new Produto("Mouse Gamer", 79.9, 10),
+  new Produto("Teclado Mecânico", 199.9, 5),
+  new Produto("Monitor 144Hz", 899.9, 3),
+  new Produto("Headset RGB", 149.9, 7),
+  new Produto("Pizza Calabresa", 35, 10),
+  new Produto("Pizza Mussarela", 32, 8),
+  new Produto("Hambúrguer", 18, 15),
+  new Produto("Refrigerante Lata", 6, 40),
+  new Produto("Batata Frita", 12, 20),
+];
+
+class Carrinho {
+  constructor() {
+    this.itens = new Map();
+  }
+
+  adicionar(produto, qtd = 1) {
+    qtd = Number(qtd);
+    qtd = Math.floor(qtd);
+
+    if (qtd <= 0) {
+      throw Error("Quantidade inválida. Deve ser maior que ZERO!");
+    }
+
+    if (!produto.temEstoque(qtd)) {
+      throw Error("Estoque insuficiente.");
+    }
+
+    let chave = produto.nome;
+    let linha = this.itens.get(chave);
+    if (this.itens.has(chave)) {
+      linha.quantidade += qtd;
+      produto.reduzirEstoque(qtd);
+      this.itens.set(chave, linha);
+
+      return { ok: true, acao: "Atualizado", linha: linha };
+    } else {
+      linha = { produto: produto, quantidade: qtd };
+      produto.reduzirEstoque(qtd);
+      this.itens.set(chave, linha);
+      return { ok: true, acao: "Adicionado", linha: linha };
+    }
+  }
+
+  remover(produto, qtd = 1) {
+    qtd = Number(qtd);
+    qtd = Math.floor(qtd);
+
+    if (qtd <= 0) {
+      throw Error("Quantidade inválida. Deve ser maior que ZERO!");
+    }
+
+    const chave = produto.nome;
+
+    if (!this.itens.has(chave)) {
+      throw Error("Produto não está no carrinho");
+    }
+
+    const linha = this.itens.get(chave);
+
+    if (linha.quantidade < qtd) {
+      throw Error("Você está tentando remover mais do que tem no carrinho.");
+    }
+
+    linha.quantidade -= qtd;
+    produto.aumentarEstoque(qtd);
+
+    if (linha.quantidade == 0) {
+      this.itens.delete(chave);
+      return { ok: true, acao: "Removido totalmente", linha: null };
+    }
+
+    this.itens.set(chave, linha);
+    return { ok: true, acao: "Quantidade reduzida", linha: linha };
+  }
+
+  calcularTotal() {
+    let total = 0;
+
+    for (let [nome, linha] of this.itens.entries()) {
+      const produto = linha.produto;
+      const quantidade = linha.quantidade;
+
+      const subtotal = produto.preco * quantidade;
+      total += subtotal;
+    }
+    return total;
+  }
+}
+
+const produtoSelect = document.getElementById("produto-select");
+const listaProdutos = document.getElementById("lista-produtos");
+const produtoQtdCart = document.getElementById("produto-qtd-cart");
+const btnAddCarrinho = document.getElementById("btn-add-carrinho");
+const avisoCarrinho = document.getElementById("aviso-carrinho")
+const listaCarrinho = document.getElementById("lista-carrinho");
+const totalCarrinho = document.getElementById("total-carrinho");
+
+const carrinho = new Carrinho();
+
+function renderizarProdutos() {
+  listaProdutos.innerHTML = "";
+
+  produtos.forEach((p) => {
+    const li = document.createElement("li");
+    li.textContent = `${p.nome} — R$ ${p.preco} — Estoque: ${p.quantidade}`;
+    listaProdutos.appendChild(li);
+  });
+}
+
+function atualizarCarrinho() {
+  listaCarrinho.innerHTML = ""
+
+  carrinho.itens.forEach((linha) => {
+    const li = document.createElement("li")
+    li.textContent = `${linha.produto.nome} — ${linha.quantidade}`
+
+    const btnRemoverCarrinho = document.createElement("button")
+    btnRemoverCarrinho.textContent = "-"
+    btnRemoverCarrinho.style.color = "white"
+
+    btnRemoverCarrinho.addEventListener("click", () => {
+      try {
+        carrinho.remover(linha.produto, 1)
+        atualizarCarrinho()
+        renderizarProdutos()
+      } catch (e) {
+        avisoCarrinho.textContent = e.message
+        avisoCarrinho.style.color = e.message
+      }
+    })
+
+    li.appendChild(btnRemoverCarrinho)
+    listaCarrinho.appendChild(li)
+  })
+
+  const total = carrinho.calcularTotal()
+  totalCarrinho.textContent = `R$: ${total.toFixed(2)}`
+}
+
+function carregarSelectProdutos() {
+  produtoSelect.innerHTML = "";
+
+  produtos.forEach((p, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = `${p.nome} - R$: ${p.preco}`;
+    produtoSelect.appendChild(option);
+  });
+}
+
+btnAddCarrinho.addEventListener("click", () => {
+  const indice = Number(produtoSelect.value);
+  const produto = produtos[indice];
+  const quantidade = Number(produtoQtdCart.value);
+
+  try {
+    carrinho.adicionar(produto, quantidade)
+    atualizarCarrinho()
+    renderizarProdutos()
+  } catch (e) {
+    avisoCarrinho.textContent = e.message
+    avisoCarrinho.style.color = "red"
+  }
+});
+
+carregarSelectProdutos();
+renderizarProdutos();
