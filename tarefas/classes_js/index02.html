@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes com JS</title>
+    <link rel="stylesheet" href="estilos/style02.css" />
+    <script src="js/script02.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>🚀 Exercícios de Classes em JavaScript - nível empresa</h1>
+    </header>
+
+    <main>
+      <section id="financeiro">
+        <h2>📊 Controle Financeiro</h2>
+
+        <div class="form-transacao">
+          <label for="descricao">Descrição:</label>
+          <input
+            type="text"
+            id="descricao"
+            placeholder="Ex: Salário, Mercado, Uber..."
+          />
+
+          <label for="valor">Valor:</label>
+          <input type="number" id="valor" placeholder="Ex: 1500.00" />
+
+          <label for="tipo">Tipo:</label>
+          <select id="tipo">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+
+          <label for="data">Data:</label>
+          <input type="date" id="data" />
+
+          <button id="btn-adicionar">Adicionar Transação</button>
+
+          <div id="mensagem-erro"></div>
+        </div>
+
+        <div class="resumo">
+          <label for="modo">Modo da Carteira:</label>
+          <select name="modo" id="modo">
+            <option value="local">Local Offline</option>
+            <option value="online">Online API</option>
+          </select>
+          <h3>Resumo da Carteira</h3>
+          <p><strong>Saldo:</strong> <span id="saldo">R$ 0,00</span></p>
+          <p>
+            <strong>Total Entradas:</strong>
+            <span id="total-entradas">R$ 0,00</span>
+          </p>
+          <p>
+            <strong>Total Saídas:</strong>
+            <span id="total-saidas">R$ 0,00</span>
+          </p>
+        </div>
+
+        <div class="lista-transacoes">
+          <h3>Transações</h3>
+          <table id="lista">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
