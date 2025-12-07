@@ -76,6 +76,71 @@
           </table>
         </div>
       </section>
+
+      <section id="turma" class="secao-turma">
+        <h2>🎓 Gerenciamento de Alunos</h2>
+
+        <form id="form-adicionar-aluno" class="form-turma" autocomplete="off">
+          <label for="aluno-nome">Nome</label>
+          <input
+            id="aluno-nome"
+            name="nome"
+            type="text"
+            placeholder="Nome completo"
+          />
+
+          <label for="aluno-idade">Idade</label>
+          <input
+            id="aluno-idade"
+            name="idade"
+            type="number"
+            min="0"
+            placeholder="Ex: 18"
+          />
+
+          <label for="aluno-nota">Nota</label>
+          <input
+            id="aluno-nota"
+            name="nota"
+            type="number"
+            step="0.1"
+            min="0"
+            max="100"
+            placeholder="0 - 100"
+          />
+
+          <button id="btn-adicionar-aluno" type="submit">
+            Adicionar aluno
+          </button>
+          <div id="mensagem-turma" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="controles-turma">
+          <button id="btn-melhores">Melhores notas</button>
+          <button id="btn-media">Média da turma</button>
+          <button id="btn-salvar">Salvar</button>
+          <button id="btn-carregar">Carregar</button>
+        </div>
+
+        <h3>Alunos</h3>
+        <input
+          type="text"
+          id="aluno-busca"
+          placeholder="Buscar aluno por nome..."
+        />
+        <select id="ordenar-alunos">
+          <option value="">Ordenar por...</option>
+          <option value="nome-az">Nome A–Z</option>
+          <option value="nome-za">Nome Z–A</option>
+          <option value="nota-up">Nota ↑ (maior primeiro)</option>
+          <option value="nota-down">Nota ↓ (menor primeiro)</option>
+          <option value="idade-up">Idade ↑ (maior primeiro)</option>
+          <option value="idade-down">Idade ↓ (menor primeiro)</option>
+        </select>
+
+        <ul id="lista-alunos" class="lista-alunos"></ul>
+      </section>
     </main>
+
   </body>
 </html>

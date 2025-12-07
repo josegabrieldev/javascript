@@ -1,3 +1,44 @@
+const icons = {
+  success: "✔️",
+  info: "ℹ️",
+  warn: "⚠️",
+  error: "❌",
+};
+
+function showAlert(type, title, message) {
+  // Criar container se não existir
+  let container = document.getElementById("alert-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "alert-container";
+    document.body.appendChild(container);
+  }
+
+  // Criar alerta
+  const alertBox = document.createElement("div");
+  alertBox.className = `alert ${type}`;
+
+  alertBox.innerHTML = `
+    <span class="alert-icon">${icons[type] || "ℹ️"}</span>
+    <div class="alert-texts">
+      <strong>${title}</strong>
+      <p>${message}</p>
+    </div>
+    <button class="alert-close">✕</button>
+  `;
+
+  container.appendChild(alertBox);
+
+  // Fechar manual
+  alertBox.querySelector(".alert-close").onclick = () => alertBox.remove();
+
+  // Fechar automático
+  setTimeout(() => {
+    alertBox.remove();
+  }, 3500);
+}
+
+// 📊 Controle Financeiro
 class Transacao {
   constructor(descricao, valor, tipo, data) {
     if (!descricao || descricao.trim().length < 3) {
@@ -303,6 +344,7 @@ async function carregarInicial() {
     try {
       await carteiraOnline.carregar();
     } catch (e) {
+      showAlert("error", e.message, "Erro ao carregar dados online")
       mensagemErro.textContent = e.message || "Erro ao carregar dados online";
       mensagemErro.style.color = "red";
       carteiraOnline.transacoes = [];
@@ -339,14 +381,14 @@ btnAdicionar.addEventListener("click", async (e) => {
     await sistema.adicionar(transacao);
     salvarCarteiraNoLocalStorage();
     atualizarTela();
+    showAlert("success", "Sucesso!", "Transação adicionada");
 
     inputDescricao.value = "";
     inputValor.value = "";
     inputTipo.value = "entrada";
     inputData.value = "";
   } catch (err) {
-    mensagemErro.textContent = err.message || "Erro ao adicionar!";
-    mensagemErro.style.color = "red";
+    showAlert("error", "Erro!", "Não foi possivel adicionar transação");
   } finally {
     btnAdicionar.disabled = false;
   }
@@ -370,6 +412,7 @@ async function handleRemover(id) {
     salvarCarteiraNoLocalStorage();
     atualizarTela();
   } catch (e) {
+    showAlert("error", e.message, "Erro ao remover")
     mensagemErro.textContent = e.message || "Erro ao remover.";
     mensagemErro.style.color = "red";
   } finally {
@@ -426,3 +469,303 @@ function atualizarTela() {
 })();
 
 // -------------------------------------------------------------------- //
+// 🎓 Gerenciamento de Alunos
+class Aluno {
+  constructor(nome, idade, nota) {
+    if (!nome || nome.trim().length < 3) {
+      throw new Error(
+        "Nome inválido. Por favor digite um nome válido e com pelo o menos 3 caracteres."
+      );
+    }
+
+    if (isNaN(idade) || idade < 4) {
+      throw new Error(
+        "Idade precisa ser válida e inteira. Maior que 3 anos de idade"
+      );
+    }
+
+    if (isNaN(nota) || nota < 0 || nota > 100) {
+      throw new Error(
+        "A nota está incorreta para o formato desejado. Nota precisa ser de 0 a 100"
+      );
+    }
+
+    this.id = Date.now() + Math.random();
+    this.nome = nome.trim();
+    this.idade = Number(idade);
+    this.nota = Number(nota);
+  }
+}
+
+class Turma {
+  constructor() {
+    this.alunos = [];
+  }
+
+  adicionarAluno(aluno) {
+    if (!(aluno instanceof Aluno)) {
+      throw new Error("O objeto informado não é um aluno válido.");
+    }
+    this.alunos.push(aluno);
+  }
+
+  removerPorId(id) {
+    this.alunos = this.alunos.filter((aluno) => aluno.id !== id);
+  }
+
+  editarAluno(id, novoNome, novaIdade, novaNota) {
+    const aluno = this.alunos.find((a) => a.id === id);
+    if (!aluno) return false;
+
+    aluno.nome = novoNome.trim();
+    aluno.idade = Number(novaIdade);
+    aluno.nota = Number(novaNota);
+    return true;
+  }
+
+  melhoresAlunos() {
+    return this.alunos.filter((aluno) => aluno.nota >= 80);
+  }
+
+  mediaDaTurma() {
+    if (this.alunos.length === 0) return 0;
+
+    const soma = this.alunos.reduce((total, aluno) => total + aluno.nota, 0);
+    return Number((soma / this.alunos.length).toFixed(2));
+  }
+
+  salvar() {
+    const dados = JSON.stringify(this.alunos);
+    localStorage.setItem("turma-alunos", dados);
+  }
+
+  carregar() {
+    const dados = localStorage.getItem("turma-alunos");
+    if (!dados) return;
+
+    const lista = JSON.parse(dados);
+    this.alunos = lista.map((a) => {
+      const aluno = new Aluno(a.nome, a.idade, a.nota);
+      aluno.id = a.id;
+      return aluno;
+    });
+  }
+
+  buscar(keyword) {
+    const termo = keyword.trim().toLowerCase();
+    if (!termo) return this.alunos;
+    return this.alunos.filter((aluno) =>
+      aluno.nome.toLowerCase().includes(termo)
+    );
+  }
+
+  aplicarOrdenacao(lista, tipo) {
+    switch (tipo) {
+      case "nome-az":
+        return [...lista].sort((a, b) => a.nome.localeCompare(b.nome));
+
+      case "nome-za":
+        return [...lista].sort((a, b) => b.nome.localeCompare(a.nome));
+
+      case "nota-up":
+        return [...lista].sort((a, b) => b.nota - a.nota);
+
+      case "nota-down":
+        return [...lista].sort((a, b) => a.nota - b.nota);
+
+      case "idade-up":
+        return [...lista].sort((a, b) => b.idade - a.idade);
+
+      case "idade-down":
+        return [...lista].sort((a, b) => a.idade - b.idade);
+
+      default:
+        return lista;
+    }
+  }
+}
+
+const nomeAluno = document.querySelector("#aluno-nome");
+const idadeAluno = document.querySelector("#aluno-idade");
+const notaAluno = document.querySelector("#aluno-nota");
+const BuscaAluno = document.querySelector("#aluno-busca");
+
+const listaAlunos = document.querySelector("#lista-alunos");
+const mensagemTurma = document.querySelector("#mensagem-turma");
+
+const btnAdicionarAluno = document.querySelector("#btn-adicionar-aluno");
+const btnMelhoresAlunos = document.querySelector("#btn-melhores");
+const btnMedia = document.querySelector("#btn-media");
+const btnSalvar = document.querySelector("#btn-salvar");
+const btnCarregar = document.querySelector("#btn-carregar");
+
+const selectOrdenar = document.querySelector("#ordenar-alunos");
+
+let idEmEdicao = null;
+const turma = new Turma();
+
+btnAdicionarAluno.addEventListener("click", (e) => {
+  e.preventDefault();
+  try {
+    if (idEmEdicao !== null) {
+      turma.editarAluno(
+        idEmEdicao,
+        nomeAluno.value,
+        idadeAluno.value,
+        notaAluno.value
+      );
+
+      showAlert(
+        "success",
+        "Edição feita!",
+        `Aluno ${nomeAluno.value} editado`
+      );
+      mensagemTurma.textContent = "Aluno editado com sucesso!";
+      mensagemTurma.style.color = "green";
+
+      nomeAluno.value = "";
+      idadeAluno.value = "";
+      notaAluno.value = "";
+
+      idEmEdicao = null;
+      btnAdicionarAluno.textContent = "Adicionar Aluno";
+      renderizarLista();
+    } else {
+      const aluno = new Aluno(
+        nomeAluno.value,
+        idadeAluno.value,
+        notaAluno.value
+      );
+      turma.adicionarAluno(aluno);
+      showAlert(
+        "success",
+        "Aluno adicionado!",
+        `${nomeAluno.value} foi registrado`
+      );
+      mensagemTurma.textContent = `Aluno ${nomeAluno.value} adicionado!`;
+      mensagemTurma.style.color = "green";
+
+      nomeAluno.value = "";
+      idadeAluno.value = "";
+      notaAluno.value = "";
+      renderizarLista();
+    }
+  } catch (erro) {
+    showAlert("error", "Erro ao adicionar aluno", erro.message)
+    mensagemTurma.textContent = erro.message;
+    mensagemTurma.style.color = "red";
+  }
+});
+
+btnSalvar.addEventListener("click", () => {
+  turma.salvar();
+  showAlert("success", "Turma salva com sucesso!", "Os dados foram gravados no armazenamento local")
+  mensagemTurma.textContent = "Turma salva com sucesso!";
+  mensagemTurma.style.color = "green";
+});
+
+btnCarregar.addEventListener("click", () => {
+  turma.carregar();
+  showAlert("success", "Turma carregada!", "Os alunos foram carregados da memória")
+  mensagemTurma.textContent = "Turma carregada!";
+  mensagemTurma.style.color = "green";
+  renderizarLista();
+});
+
+btnMelhoresAlunos.addEventListener("click", () => {
+  const melhores = turma.melhoresAlunos();
+  renderizarLista(melhores);
+
+  if (melhores.length === 0) {
+    showAlert("error", "Sem alunos excelentes!", "Nenhum aluno com nota maior que 80 pontos!")
+    mensagemTurma.textContent = "Nenhum aluno com nota acima de 80 pontos!"
+    mensagemTurma.style.color = "red"
+  } else {
+    showAlert("success", "Melhores alunos encontrados!", `${melhores.length} aluno(s) excelentes!`)
+    mensagemTurma.textContent = `${melhores.length} aluno(s) excelentes!`
+    mensagemTurma.style.color = "green"
+  }
+});
+
+btnMedia.addEventListener("click", () => {
+  const media = turma.mediaDaTurma();
+  showAlert("info", "Média da turma", `A média calculada foi ${media} pontos`)
+  mensagemTurma.textContent = `Média da turma: ${media}`;
+  mensagemTurma.style.color = "blue";
+});
+
+BuscaAluno.addEventListener("input", () => {
+  renderizarLista();
+});
+
+selectOrdenar.addEventListener("click", () => {
+  renderizarLista();
+});
+
+function renderizarLista(listaExterna = null) {
+  let lista = listaExterna || turma.buscar(BuscaAluno.value);
+  lista = turma.aplicarOrdenacao(lista, selectOrdenar.value);
+
+  listaAlunos.innerHTML = "";
+
+  lista.forEach((aluno) => {
+    const li = document.createElement("li");
+    const largura = aluno.nota;
+
+    let cor = "";
+    if (aluno.nota >= 80) cor = "green";
+    else if (aluno.nota >= 50) cor = "gold";
+    else cor = "red";
+
+    li.innerHTML = `
+      <p>${aluno.nome} - ${aluno.idade} anos - Nota: ${aluno.nota}</p>
+
+      <div class="barra-nota">
+        <div class="preenchimento" style="width:${largura}%; background:${cor};"></div>
+      </div>
+
+      <div> <button class="editar" data-id="${aluno.id}">Editar</button>
+      <button class="remover" data-id="${aluno.id}">Remover</button> </div>
+    `;
+
+    listaAlunos.appendChild(li);
+  });
+
+  document.querySelectorAll(".remover").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.dataset.id);
+      const aluno = turma.alunos.find((a) => a.id === id)
+      const nomeRemovido = aluno ? aluno.nome : "Aluno"
+
+      turma.removerPorId(id);
+      renderizarLista();
+
+      showAlert("warn", "Aluno removido!", `${nomeRemovido} foi excluído da lista`)
+      mensagemTurma.textContent = "Aluno removido!";
+      mensagemTurma.style.color = "green";
+    });
+  });
+
+  document.querySelectorAll(".editar").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.dataset.id);
+      const aluno = turma.alunos.find((a) => a.id === id);
+
+      nomeAluno.value = aluno.nome;
+      idadeAluno.value = aluno.idade;
+      notaAluno.value = aluno.nota;
+
+      idEmEdicao = id;
+
+      btnAdicionarAluno.textContent = "Salvar Alterações";
+
+      showAlert(
+        "info",
+        "Modo edição ativado!",
+        "Edite os dados e clique em salvar"
+      );
+      mensagemTurma.textContent = "Modo edição ativado!";
+      mensagemTurma.style.color = "orange";
+    });
+  });
+}
