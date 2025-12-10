@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes com Js</title>
+    <style>
+      body {
+        background: #0d0d15;
+        color: #e6e6e6;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #41ff89;
+        text-shadow: 0 0 10px #41ff89;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background: #151520;
+        border: 1px solid #2a2a39;
+        border-radius: 12px;
+        padding: 20px;
+        width: 320px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        text-align: center;
+      }
+
+      button {
+        padding: 10px;
+        width: 100%;
+        background: #6a00ff;
+        border: none;
+        border-radius: 8px;
+        margin: 8px 0;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #8e32ff;
+        transform: scale(1.03);
+      }
+
+      .display {
+        margin-top: 20px;
+        font-size: 1.4rem;
+        color: #41ff89;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🚀 Exercícios de Classes em JavaScript - nível empresa</h1>
+    </header>
+    <main>
+      <h1>Teste do Timer</h1>
+
+      <div class="card">
+        <button id="start">▶️ Iniciar</button>
+        <button id="stop">⏸️ Parar</button>
+        <button id="reset">🔄 Resetar</button>
+
+        <div class="display">
+          <span id="time">0 ms</span>
+        </div>
+      </div>
+    </main>
+    <script src="js/script03.js"></script>
+  </body>
+</html>
