@@ -1,4 +1,6 @@
 algoritmo "Primeiro"
+// Disciplina   : [Linguagem e Lógica de Programação] 
+// Professor   : Antonio Carlos Nicolodi 
 var
   msg: caractere
   recado: caractere
