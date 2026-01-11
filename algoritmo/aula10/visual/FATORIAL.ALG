@@ -20,5 +20,6 @@ inicio
      Escreval(" ")
      Escreval("O fatorial do número ", N, " é igual a ", F)
      Escreva("Deseja fazer o fatorial de outro número? [S/N]")
+     Leia(R)
   Ate ( (R = "N") ou (R = "n") )
 fimalgoritmo
