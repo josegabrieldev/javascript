@@ -59,7 +59,7 @@
         line-height: 1.6;
       }
 
-      code {
+      p#res {
         background: #00000055;
         color: #00ffcc;
         padding: 4px 8px;
@@ -74,10 +74,14 @@
     <div class="card">
       <h2>Problema 00</h2>
       <p>Descrição do Problema</p>
+      <p id="res">Resposta...</p>
     </div>
 
     <script>
       // Códigos JavaScript para resolver o problema
+
+      // Pega o elemento onde a resposta será exibida
+      const res = document.getElementById("res");
     </script>
   </body>
 </html>
