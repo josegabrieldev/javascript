@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lógica de Programação JavaScript</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #02a676, #003840);
+        font-family: "Fira Code", monospace;
+        font-size: 1em;
+        padding: 40px;
+        color: #f0f0f0;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 6px #00000088;
+      }
+
+      .card {
+        background: #ffffff11;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      h2 {
+        font-size: 1.8em;
+        color: #fbff00;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 4px #00000099;
+      }
+
+      p {
+        font-size: 1.2em;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+        text-align: justify;
+        line-height: 1.6;
+      }
+
+      input {
+        background: #00000055;
+        color: #ffffff;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1em;
+        margin-bottom: 10px;
+      }
+
+      input::placeholder {
+        color: #cccccc;
+      }
+
+      input:focus {
+        outline: none;
+        background: #00000077;
+        border: #00ffcc 2px solid;
+      }
+
+      button {
+        background: #00ffcc;
+        color: #000000;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      button:hover {
+        background: #00cc99;
+      }
+
+      p#res {
+        background: #00000055;
+        color: #00ffcc;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lógica de Programação com JavaScript</h1>
+
+    <div class="card">
+      <h2>Problema 03</h2>
+      <p>Pedir para o usuário digitar dois números atraves de campos input e exibir o resultado da soma, subtração, divisão e multiplicação entre eles.</p>
+      <input type="number" id="num1" placeholder="Digite o primeiro número" />
+      <input type="number" id="num2" placeholder="Digite o segundo número" />
+      <button id="btn">Calcular Operações</button>
+      <p id="res">Resposta...</p>
+    </div>
+
+    <script>
+      // Códigos JavaScript para resolver o problema
+
+      // Pega o elemento onde a resposta será exibida
+      const res = document.getElementById("res");
+
+      // Pega os elementos de entrada
+      const num1 = document.getElementById("num1");
+      const num2 = document.getElementById("num2");
+
+      // Pega o botão de envio
+      const btn = document.getElementById("btn");
+
+      // Calcula as operações quando o botão for clicado
+      btn.addEventListener("click", function () {
+        // Converte os valores digitados em números
+        const n1 = Number(num1.value);
+        const n2 = Number(num2.value);
+
+        // Calcula a soma
+        const soma = n1 + n2;
+        
+        // Calcula a subtração
+        const subtracao = n1 - n2;
+
+        // Calcula a multiplicação
+        const multiplicacao = n1 * n2;
+
+        // Calcula a divisão
+        const divisao = n1 / n2;
+
+        // Exibe a resposta
+        res.innerHTML = `
+          <p>A soma dos números ${n1} e ${n2} é ${soma.toFixed(2)}</p>
+          <p>A subtração dos números ${n1} e ${n2} é ${subtracao.toFixed(2)}</p>
+          <p>A multiplicação dos números ${n1} e ${n2} é ${multiplicacao.toFixed(2)}</p>
+          <p>A divisão dos números ${n1} e ${n2} é ${divisao.toFixed(2)}</p>
+        `;
+
+        // Limpa os campos de entrada
+        num1.value = "";
+        num2.value = "";
+      });
+    </script>
+  </body>
+</html>
