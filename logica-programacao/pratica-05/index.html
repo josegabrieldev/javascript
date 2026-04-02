@@ -109,7 +109,7 @@
       </p>
       <input type="number" id="num1" placeholder="Digite o primeiro número" />
       <input type="number" id="num2" placeholder="Digite o segundo número" />
-      <button id="btn">Calcular Divisão</button>
+      <button id="btn">Calcular Operações</button>
 
       <p id="res">Resposta...</p>
     </div>
@@ -130,7 +130,7 @@
       <button id="btn-dec">Decrementar</button>
 
       <p>Contagem foi iniciada em: <span id="contagem">0</span></p>
-      <p>Contagem atual: <span id="resp">0</span></p>
+      <p id="texto">Contagem atual: <span id="resp">0</span></p>
     </div>
 
     <script>
@@ -156,9 +156,13 @@
         // Calcula a divisão
         const divisao = n1 / n2;
         const resto = n1 % n2;
+        const exponenciacao = n1 ** n2;
 
         // Exibe a resposta
-        res.textContent = `O resultado da divisão é ${divisao.toFixed(2)} e o resto é ${resto}`;
+        res.innerHTML = `
+        <strong>Divisão:</strong> ${n1} dividido por ${n2} = ${divisao.toFixed(2)}<br>
+        <strong>Resto:</strong> ${n1} dividido por ${n2} com resto = ${resto}
+        <br><strong>Exponenciação:</strong> ${n1} elevado a ${n2} = ${exponenciacao}`;
       });
 
       // Limpa o formulário quando o botão for clicado
@@ -168,6 +172,8 @@
       });
 
       // Problema 06: Incremento e Decremento
+      // Pega os elementos
+      const texto = document.getElementById("texto");
       const resp = document.getElementById("resp");
       const contagem = document.getElementById("contagem");
       const num = document.getElementById("num");
@@ -195,14 +201,14 @@
       btnInc.addEventListener("click", function () {
         let valor = Number(resp.textContent);
         valor++;
-        resp.textContent = valor;
+        texto.textContent = `Foi incrementado + 1 para ${resp.textContent}: Resultado igual a ${resp.textContent = valor}`;
       });
 
       // Decremento quando o botão for clicado
       btnDec.addEventListener("click", function () {
         let valor = Number(resp.textContent);
         valor--;
-        resp.textContent = valor;
+        texto.textContent = `Foi decrementado - 1 para ${resp.textContent}: Resultado igual a ${resp.textContent = valor}`;
       });
     </script>
   </body>
