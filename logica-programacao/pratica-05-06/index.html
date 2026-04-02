@@ -103,9 +103,7 @@
     <div class="card">
       <h2>Problema 05</h2>
       <p>
-        Pedir um número ao usuário e pedir outro número ao usuário e fazer a
-        divisão do primeiro pelo segundo e exibir o resultado e o resto da
-        divisão.
+        Pedir dois números ao usuário  e fazer o modulo que calclar o resto da divisão, fazer o primeiro elevado pelo segundo número e exibir os resultados.
       </p>
       <input type="number" id="num1" placeholder="Digite o primeiro número" />
       <input type="number" id="num2" placeholder="Digite o segundo número" />
@@ -149,9 +147,9 @@
 
       // Calcula a divisão quando o botão for clicado
       btn.addEventListener("click", function () {
-        // Converte os valores digitados em números
-        const n1 = Number(num1.value);
-        const n2 = Number(num2.value);
+        // Converte os valores digitados em números inteiros
+        const n1 = parseInt(num1.value);
+        const n2 = parseInt(num2.value);
 
         // Calcula a divisão
         const divisao = n1 / n2;
@@ -160,7 +158,6 @@
 
         // Exibe a resposta
         res.innerHTML = `
-        <strong>Divisão:</strong> ${n1} dividido por ${n2} = ${divisao.toFixed(2)}<br>
         <strong>Resto:</strong> ${n1} dividido por ${n2} com resto = ${resto}
         <br><strong>Exponenciação:</strong> ${n1} elevado a ${n2} = ${exponenciacao}`;
       });
@@ -187,7 +184,7 @@
 
       // Inicia a contagem quando o botão for clicado
       btnInit.addEventListener("click", function () {
-        const n = Number(num.value);
+        const n = parseInt(Number(num.value));
         resp.textContent = n;
         contagem.textContent = n;
         btnInc.style.display = "block";
