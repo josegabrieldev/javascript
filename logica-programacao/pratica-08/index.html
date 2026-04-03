@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lógica de Programação JavaScript</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #02a676, #003840);
+        font-family: "Fira Code", monospace;
+        font-size: 1em;
+        padding: 40px;
+        color: #f0f0f0;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 6px #00000088;
+      }
+
+      .card {
+        background: #ffffff11;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      h2 {
+        font-size: 1.8em;
+        color: #fbff00;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 4px #00000099;
+      }
+
+      p {
+        font-size: 1.2em;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+        text-align: justify;
+        line-height: 1.6;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 1em;
+        color: #00ffcc;
+      }
+
+      input {
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #00000077;
+        color: #ffffff;
+        font-size: 1em;
+      }
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #00ffcc;
+        color: #000000;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      p#res {
+        background: #00000055;
+        color: #00ffcc;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lógica de Programação com JavaScript</h1>
+
+    <div class="card">
+      <h2>Problema 08</h2>
+      <p>
+        Dois jogadores digitam um número se forem iguais empate. Sorteio 0 ou 1,
+        se for 0 o jogador com o número menor vence e se for 1 o jogador com o
+        número maior vence.
+      </p>
+      <form action="">
+        <label for="jogador1">Jogador 1:</label>
+        <input type="number" name="jogador1" id="jogador1" />
+        <label for="jogador2">Jogador 2:</label>
+        <input type="number" name="jogador2" id="jogador2" />
+        <button type="submit" id="btnVerificar">Verificar Resultado</button>
+      </form>
+      <p id="res">Resposta...</p>
+    </div>
+
+    <script>
+      // Códigos JavaScript para resolver o problema
+
+      // Pega o elemento onde a resposta será exibida
+      const res = document.getElementById("res");
+      // Pega os campos de input e o botão do formulário
+      const jogador1Input = document.getElementById("jogador1");
+      const jogador2Input = document.getElementById("jogador2");
+      const btnVerificar = document.getElementById("btnVerificar");
+
+      // Adiciona um evento de clique ao botão para verificar o resultado
+      btnVerificar.addEventListener("click", (e) => {
+        e.preventDefault();
+        const jogador1 = parseInt(jogador1Input.value);
+        const jogador2 = parseInt(jogador2Input.value);
+
+        if (jogador1 === jogador2) {
+          res.textContent = "Empate!";
+        } else {
+          const sorteio = Math.floor(Math.random() * 2); // Sorteia 0 ou 1
+          if (sorteio === 0) {
+            // Jogador com número menor vence
+            const vencedor = jogador1 < jogador2 ? "Jogador 1" : "Jogador 2";
+            res.textContent = `${vencedor} venceu! (Sorteio: 0 - Menor vence)`;
+          } else {
+            // Jogador com número maior vence
+            const vencedor = jogador1 > jogador2 ? "Jogador 1" : "Jogador 2";
+            res.textContent = `${vencedor} venceu! (Sorteio: 1 - Maior vence)`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
