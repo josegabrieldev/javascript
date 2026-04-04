@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lógica de Programação JavaScript</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #02a676, #003840);
+        font-family: "Fira Code", monospace;
+        font-size: 1em;
+        padding: 40px;
+        color: #f0f0f0;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 6px #00000088;
+      }
+
+      .card {
+        background: #ffffff11;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      h2 {
+        font-size: 1.8em;
+        color: #fbff00;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 4px #00000099;
+      }
+
+      p {
+        font-size: 1.2em;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+        text-align: justify;
+        line-height: 1.6;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 1em;
+        color: #00ffcc;
+      }
+
+      input {
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #00000077;
+        color: #ffffff;
+        font-size: 1em;
+      }
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #00ffcc;
+        color: #000000;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      p#res {
+        background: #00000055;
+        color: #00ffcc;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lógica de Programação com JavaScript</h1>
+
+    <div class="card">
+      <h2>Problema 09</h2>
+      <p>Pedir para o usuário digitar suas duas notas e mostrar uma mensagem informando se foi aprovado ou não. <br> A nota de corte é de 7, e vai de 0 a 10. <br> Contudo, se qualquer uma das notas for 0, reprova automaticamente.</p>
+      <form action="">
+        <label for="nota1">Nota 1:</label>
+        <input type="number" name="nota1" id="nota1">
+        <label for="nota2">Nota 2:</label>
+        <input type="number" name="nota2" id="nota2">
+
+        <button type="submit" id="btnResultado">Ver Resultado</button>
+      </form>
+      <p id="res">Resposta...</p>
+    </div>
+
+    <script>
+      // Códigos JavaScript para resolver o problema
+
+      // Pega o elemento onde a resposta será exibida
+      const res = document.getElementById("res");
+
+      // Pega os inputs
+      const nota1 = document.getElementById("nota1");
+      const nota2 = document.getElementById("nota2");
+
+      // Pega o botão de envio
+      const btn = document.getElementById("btnResultado");
+
+      // Adiciona um evento de clique ao botão
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Converte os valores digitados em números
+        const n1 = Number(nota1.value);
+        const n2 = Number(nota2.value);
+
+        // Valida as notas
+        if ((n1 < 0 || n2 < 0) || ((n1 > 10 || n2 > 10))) {
+          res.innerHTML = "Notas devem ser entre 0 e 10.";
+          return;
+        }
+
+        // Verifica se uma nota é 0
+        if (n1 === 0 || n2 === 0) {
+          res.innerHTML = "Reprovado";
+          return;
+        }
+
+        // Calcula a média
+        const media = (n1 + n2) / 2;
+
+        // Exibe a resposta
+        res.innerHTML = `Média: ${media.toFixed(1)}<br>${media >= 7 ? "Aprovado" : "Reprovado"}`;
+      });
+    </script>
+  </body>
+</html>
