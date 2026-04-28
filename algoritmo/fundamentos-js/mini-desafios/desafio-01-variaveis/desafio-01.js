@@ -1,3 +1,4 @@
+// Sistema simples de cadastro de produto em uma loja virtual
 let nomeProduto = "Teclado Gamer";
 let precoProduto = 102.58;
 let quantidadeProduto = 7;
