@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2 Eventos DOM</title>
+    <style>
+        /* Mantido para o JS: visibilidade no DOM */
+        .visivel {
+            display: block;
+        }
+
+        .ocultar {
+            display: none;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        @keyframes fundoGradiente {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes caixaEntrada {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.94);
+                filter: blur(6px);
+            }
+            65% {
+                opacity: 1;
+                transform: translateY(-4px) scale(1.02);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes caixaBrilhoSuave {
+            0%,
+            100% {
+                box-shadow:
+                    0 0 0 1px rgba(34, 211, 238, 0.15),
+                    0 22px 48px rgba(0, 0, 0, 0.35),
+                    0 0 40px rgba(34, 211, 238, 0.08);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 1px rgba(34, 211, 238, 0.35),
+                    0 26px 56px rgba(0, 0, 0, 0.4),
+                    0 0 52px rgba(34, 211, 238, 0.14);
+            }
+        }
+
+        @keyframes botaoPulsar {
+            0%,
+            100% {
+                box-shadow:
+                    0 4px 16px rgba(34, 211, 238, 0.35),
+                    0 0 0 0 rgba(34, 211, 238, 0.35);
+            }
+            50% {
+                box-shadow:
+                    0 6px 22px rgba(34, 211, 238, 0.45),
+                    0 0 0 10px rgba(34, 211, 238, 0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 4vw, 2rem);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color: #e8edf5;
+            background: linear-gradient(
+                125deg,
+                #0b1220 0%,
+                #121a2b 25%,
+                #0f172a 50%,
+                #152238 75%,
+                #0b1220 100%
+            );
+            background-size: 240% 240%;
+            animation: fundoGradiente 18s ease infinite;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(1.25rem, 3vw, 1.75rem);
+            padding: clamp(1.75rem, 5vw, 2.75rem);
+            max-width: min(100%, 28rem);
+            border-radius: 20px;
+            background: rgba(18, 26, 43, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+            transition:
+                transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        main:hover {
+            border-color: rgba(148, 163, 184, 0.22);
+        }
+
+        /* Estado quando a caixa esta oculta: painel levemente “fechado” */
+        main:has(#caixa.ocultar) {
+            transform: scale(0.985);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+            border-color: rgba(148, 163, 184, 0.08);
+        }
+
+        #caixa.visivel {
+            animation:
+                caixaEntrada 0.58s cubic-bezier(0.22, 1, 0.36, 1) both,
+                caixaBrilhoSuave 4.5s ease-in-out infinite 0.58s;
+        }
+
+        #caixa {
+            width: 100%;
+            text-align: center;
+            padding: clamp(1.35rem, 4vw, 2rem);
+            font-size: clamp(1.125rem, 2.8vw, 1.45rem);
+            font-weight: 600;
+            line-height: 1.45;
+            letter-spacing: 0.02em;
+            border-radius: 14px;
+            background: linear-gradient(
+                165deg,
+                rgba(30, 41, 59, 0.95) 0%,
+                rgba(15, 23, 42, 0.88) 100%
+            );
+            border: 1px solid rgba(34, 211, 238, 0.22);
+            color: #f1f5f9;
+            transition:
+                transform 0.28s ease,
+                border-color 0.28s ease,
+                box-shadow 0.28s ease;
+        }
+
+        #caixa.visivel:hover {
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(34, 211, 238, 0.45);
+        }
+
+        #interagir {
+            appearance: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            padding: 0.85rem 1.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #042f2e;
+            background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+            transition:
+                transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.2s ease,
+                box-shadow 0.25s ease;
+            animation: botaoPulsar 2.8s ease-in-out infinite;
+        }
+
+        #interagir:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px) scale(1.03);
+            animation: none;
+            box-shadow:
+                0 8px 28px rgba(34, 211, 238, 0.45),
+                0 0 0 2px rgba(34, 211, 238, 0.25);
+        }
+
+        #interagir:active {
+            transform: translateY(0) scale(0.97);
+            filter: brightness(0.96);
+        }
+
+        #interagir:focus-visible {
+            outline: 3px solid rgba(34, 211, 238, 0.85);
+            outline-offset: 4px;
+            animation: none;
+        }
+
+        /* Botao alterna visual quando o painel esta “fechado” */
+        main:has(#caixa.ocultar) #interagir {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: #f8fafc;
+            animation: botaoPulsar 3.2s ease-in-out infinite;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        main:has(#caixa.ocultar) #interagir:hover {
+            filter: brightness(1.12);
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(148, 163, 184, 0.35);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                animation: none;
+                background-size: 100% 100%;
+            }
+
+            #caixa.visivel {
+                animation: none;
+            }
+
+            #interagir {
+                animation: none;
+            }
+
+            main,
+            #caixa,
+            #interagir {
+                transition-duration: 0.01ms !important;
+            }
+
+            main:has(#caixa.ocultar) #interagir {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="caixa" class="visivel">Eventos DOM.</div>
+        <button id="interagir">Ocultar</button>
+    </main>
+
+    <script>
+        const caixa = document.getElementById("caixa");
+        const btnInteragir = document.getElementById("interagir");
+        let estadoVisivel = true;
+
+        btnInteragir.addEventListener("click", () => {
+            if (estadoVisivel === true) {
+                caixa.classList.remove("visivel");
+                caixa.classList.add("ocultar");
+                btnInteragir.textContent = "Mostrar";
+                estadoVisivel = false;
+            } else {
+                caixa.classList.remove("ocultar");
+                caixa.classList.add("visivel");
+                caixa.textContent = "Olá seja bem vindo!"
+                btnInteragir.textContent = "Ocultar";
+                estadoVisivel = true;
+            };
+        });
+    </script>
+</body>
+</html>
