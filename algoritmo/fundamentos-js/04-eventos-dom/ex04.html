@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vértice Atlas — Consultoria em dados e operações</title>
+    <meta
+      name="description"
+      content="Página de demonstração com conteúdo fictício para estudos de HTML e DOM."
+    />
+    <style>
+      /* Tema claro (padrão) — troque com JS: document.documentElement.dataset.theme = 'dark' | 'light' */
+      :root {
+        color-scheme: light;
+        --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+        --max: 72rem;
+        --radius: 12px;
+
+        --bg: #f0f3f8;
+        --surface: #ffffff;
+        --text: #141c28;
+        --muted: #5a697e;
+        --accent: #0d5c63;
+        --accent-2: #1a9aa8;
+        --accent-hover: #094850;
+        --accent-light: #e3f2f4;
+        --accent-ring: rgba(13, 92, 99, 0.22);
+        --border: #d2dbe8;
+        --header-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
+        --shadow: 0 16px 48px rgba(15, 23, 42, 0.1);
+        --card-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+        --tagline-border: rgba(13, 92, 99, 0.18);
+        --code-bg: #eef2f8;
+        --code-text: #3d4f63;
+
+        --footer-bg: #101820;
+        --footer-text: #b8c5ce;
+        --footer-title: #f4f7f9;
+        --footer-link: #9ebfcf;
+        --footer-link-hover: #ffffff;
+        --footer-col-heading: #7a8f9c;
+        --footer-bottom-border: rgba(255, 255, 255, 0.1);
+        --footer-bottom-text: #8a9ba8;
+
+        --toggle-track: linear-gradient(145deg, #e8ecf4 0%, #f7f9fc 55%, #dfe6f2 100%);
+        --toggle-border: rgba(15, 23, 42, 0.1);
+        --toggle-knob: #ffffff;
+        --toggle-knob-shadow: 0 2px 8px rgba(15, 23, 42, 0.18),
+          0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+        --toggle-sun: #d97706;
+        --toggle-moon: #64748b;
+        --toggle-glow: rgba(251, 191, 36, 0.35);
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0a0e12;
+        --surface: #12181f;
+        --text: #e8edf4;
+        --muted: #94a3b8;
+        --accent: #2dd4bf;
+        --accent-2: #14b8a6;
+        --accent-hover: #5eead4;
+        --accent-light: rgba(45, 212, 191, 0.12);
+        --accent-ring: rgba(45, 212, 191, 0.35);
+        --border: rgba(148, 163, 184, 0.16);
+        --header-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        --card-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+        --tagline-border: rgba(45, 212, 191, 0.25);
+        --code-bg: #1a222c;
+        --code-text: #a5c4d4;
+
+        --footer-bg: #06090c;
+        --footer-text: #94a3b8;
+        --footer-title: #f1f5f9;
+        --footer-link: #7dd3fc;
+        --footer-link-hover: #ffffff;
+        --footer-col-heading: #64748b;
+        --footer-bottom-border: rgba(148, 163, 184, 0.12);
+        --footer-bottom-text: #64748b;
+
+        --toggle-track: linear-gradient(145deg, #1a2332 0%, #0f172a 50%, #1e293b 100%);
+        --toggle-border: rgba(148, 163, 184, 0.2);
+        --toggle-knob: #f8fafc;
+        --toggle-knob-shadow: 0 2px 12px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+        --toggle-sun: #64748b;
+        --toggle-moon: #38bdf8;
+        --toggle-glow: rgba(56, 189, 248, 0.25);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+        transition: background-color 0.35s ease, color 0.25s ease;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .wrap {
+        width: min(100% - 2rem, var(--max));
+        margin-inline: auto;
+      }
+
+      /* Header */
+      .site-header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: var(--header-shadow);
+        transition: background-color 0.35s ease, border-color 0.25s ease;
+      }
+
+      .header-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.85rem 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+
+      .main-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 1.25rem;
+      }
+
+      .main-nav a {
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .main-nav a:hover {
+        color: var(--accent);
+      }
+
+      .header-cta {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+      }
+
+      .btn-ghost {
+        color: var(--muted);
+        border-color: var(--border);
+        background: transparent;
+      }
+
+      .btn-ghost:hover {
+        background: var(--bg);
+        text-decoration: none;
+      }
+
+      .btn-solid {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-solid:hover {
+        background: var(--accent-hover);
+        text-decoration: none;
+      }
+
+      /* Main */
+      .site-main {
+        padding-block: 2.5rem 3.5rem;
+      }
+
+      .hero {
+        display: grid;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+
+      @media (min-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr 1.05fr;
+        }
+      }
+
+      .hero h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.85rem, 4vw, 2.65rem);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-lead {
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 36ch;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+
+      .hero-meta strong {
+        display: block;
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      .hero-img {
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        aspect-ratio: 4 / 3;
+        border: 1px solid var(--border);
+      }
+
+      .hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .section-title {
+        margin: 0 0 0.35rem;
+        font-size: 1.35rem;
+      }
+
+      .section-intro {
+        margin: 0 0 1.75rem;
+        color: var(--muted);
+        max-width: 60ch;
+      }
+
+      .cards {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .cards {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: background-color 0.3s ease, border-color 0.25s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-body {
+        padding: 1.15rem 1.25rem 1.35rem;
+      }
+
+      .card-body h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.05rem;
+      }
+
+      .card-body p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .article-block {
+        margin-top: 3rem;
+        padding: 2rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .article-block {
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+          align-items: start;
+        }
+      }
+
+      .article-block img {
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        max-height: 280px;
+      }
+
+      .article-block h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.25rem;
+      }
+
+      .article-block p {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .article-block p:last-child {
+        margin-bottom: 0;
+      }
+
+      .tagline {
+        margin-top: 2.5rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--accent-light);
+        border-radius: var(--radius);
+        font-size: 0.9rem;
+        color: var(--accent);
+        border: 1px solid var(--tagline-border);
+        transition: background-color 0.3s ease, border-color 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .tagline code {
+        font-size: 0.85em;
+        padding: 0.15em 0.45em;
+        border-radius: 6px;
+        background: var(--code-bg);
+        color: var(--code-text);
+        border: 1px solid var(--border);
+      }
+
+      /* Footer */
+      .site-footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        padding: 3rem 0 2rem;
+        font-size: 0.9rem;
+      }
+
+      .site-footer a {
+        color: var(--footer-link);
+      }
+
+      .site-footer a:hover {
+        color: var(--footer-link-hover);
+      }
+
+      .footer-brand-title {
+        color: var(--footer-title);
+        font-size: 1.05rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+      }
+
+      .footer-brand p {
+        margin: 0.75rem 0 0;
+        max-width: 32ch;
+        line-height: 1.55;
+        opacity: 0.9;
+      }
+
+      .footer-col h3 {
+        margin: 0 0 1rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--footer-col-heading);
+      }
+
+      .footer-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .footer-col li {
+        margin-bottom: 0.55rem;
+      }
+
+      .footer-bottom {
+        padding-top: 1.75rem;
+        border-top: 1px solid var(--footer-bottom-border);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.82rem;
+        color: var(--footer-bottom-text);
+      }
+
+      .footer-bottom nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Botão troca de tema (visual) — em JS: alterne data-theme em <html> entre "light" e "dark" */
+      .theme-toggle {
+        position: relative;
+        flex-shrink: 0;
+        width: 3.5rem;
+        height: 2rem;
+        padding: 0;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        background: var(--toggle-track);
+        box-shadow: 0 0 0 1px var(--toggle-border) inset,
+          0 2px 14px var(--toggle-glow);
+        transition: box-shadow 0.28s ease, transform 0.18s ease;
+      }
+
+      .theme-toggle:hover {
+        box-shadow: 0 0 0 1px var(--toggle-border) inset,
+          0 3px 18px var(--toggle-glow), 0 0 0 4px var(--accent-ring);
+      }
+
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 1px var(--toggle-border) inset,
+          0 0 0 3px var(--accent-ring);
+      }
+
+      .theme-toggle:active {
+        transform: scale(0.96);
+      }
+
+      .theme-toggle__icons {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+        pointer-events: none;
+      }
+
+      .theme-toggle__icons svg {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+      }
+
+      .theme-toggle__sun {
+        color: var(--toggle-sun);
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      .theme-toggle__moon {
+        color: var(--toggle-moon);
+        opacity: 0.38;
+        transform: scale(1);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      html[data-theme="dark"] .theme-toggle__sun {
+        opacity: 0.32;
+        transform: scale(0.92);
+      }
+
+      html[data-theme="dark"] .theme-toggle__moon {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      .theme-toggle__knob {
+        position: absolute;
+        top: 50%;
+        left: 3px;
+        width: 22px;
+        height: 22px;
+        margin-top: -11px;
+        border-radius: 50%;
+        background: var(--toggle-knob);
+        box-shadow: var(--toggle-knob-shadow);
+        z-index: 1;
+        transition: left 0.38s cubic-bezier(0.34, 1.25, 0.64, 1),
+          background 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      html[data-theme="dark"] .theme-toggle__knob {
+        left: calc(100% - 3px - 22px);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a href="#inicio" class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Vértice Atlas
+        </a>
+        <nav class="main-nav" aria-label="Principal">
+          <ul>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#casos">Casos</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#carreiras">Carreiras</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <button
+            type="button"
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Alternar tema claro ou escuro"
+            title="Tema (claro / escuro)"
+          >
+            <span class="theme-toggle__icons" aria-hidden="true">
+              <svg
+                class="theme-toggle__sun"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+              <svg
+                class="theme-toggle__moon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </span>
+            <span class="theme-toggle__knob" aria-hidden="true"></span>
+          </button>
+          <a class="btn btn-ghost" href="#portal-cliente">Portal do cliente</a>
+          <a class="btn btn-solid" href="#agendar">Agendar conversa</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main" id="inicio">
+      <div class="wrap">
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <h1 id="hero-title">
+              Operações mais claras, decisões mais rápidas — sem prometer
+              milagre
+            </h1>
+            <p class="hero-lead">
+              A Vértice Atlas é uma consultoria fictícia criada apenas para este
+              exercício. Ajudamos times de supply chain e finanças a enxergar o
+              que importa, com dados que conversam entre si (na história desta
+              página, pelo menos).
+            </p>
+            <div class="hero-meta">
+              <div>
+                <strong>+480</strong>
+                projetos simulados desde 2019
+              </div>
+              <div>
+                <strong>12 escritórios</strong>
+                em cidades inventadas
+              </div>
+            </div>
+          </div>
+          <figure class="hero-img">
+            <img
+              src="https://picsum.photos/seed/vertice-atlas-hero/960/720"
+              width="960"
+              height="720"
+              alt="Escritório moderno com pessoas em reunião ao redor de uma mesa"
+            />
+          </figure>
+        </section>
+
+        <section id="servicos" aria-labelledby="servicos-title">
+          <h2 class="section-title" id="servicos-title">
+            O que fingimos fazer muito bem
+          </h2>
+          <p class="section-intro">
+            Estes serviços não existem de verdade; os links abaixo são âncoras
+            na mesma página, úteis para praticar navegação e eventos no DOM.
+          </p>
+          <div class="cards">
+            <article class="card">
+              <img
+                src="https://picsum.photos/seed/atlas-mapas/640/360"
+                width="640"
+                height="360"
+                alt="Mapa logístico em tela"
+              />
+              <div class="card-body">
+                <h3>Mapas de calor operacional</h3>
+                <p>
+                  Visualizações que mostram onde o estoque “dorme” e onde o
+                  transporte aperta — conceito ilustrativo para o seu HTML.
+                </p>
+              </div>
+            </article>
+            <article class="card">
+              <img
+                src="https://picsum.photos/seed/atlas-dados/640/360"
+                width="640"
+                height="360"
+                alt="Gráficos em monitor"
+              />
+              <div class="card-body">
+                <h3>Modelos de previsão de demanda</h3>
+                <p>
+                  Texto fictício: combinamos séries históricas com sinais de
+                  mercado para reduzir rupturas em até “vários” pontos
+                  percentuais.
+                </p>
+              </div>
+            </article>
+            <article class="card">
+              <img
+                src="https://picsum.photos/seed/atlas-pessoas/640/360"
+                width="640"
+                height="360"
+                alt="Equipe colaborando"
+              />
+              <div class="card-body">
+                <h3>Academia interna de dados</h3>
+                <p>
+                  Capacitação para líderes que querem falar a mesma língua que o
+                  time de analytics — totalmente inventada neste exemplo.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="article-block" id="casos" aria-labelledby="casos-title">
+          <div>
+            <h2 id="casos-title">Case resumido: Rede Vento Sul (fictícia)</h2>
+            <p>
+              A Rede Vento Sul, rede de farmácias inexistente com 214 lojas no
+              sul do país, precisava alinhar compras regionais com campanhas de
+              marketing. Em dez semanas, teríamos unificado catálogos e criado
+              um painel único — segundo esta narrativa de demonstração.
+            </p>
+            <p>
+              Resultados citados apenas para efeito visual: queda de 18% em
+              pedidos emergenciais, aumento de 6 pontos na margem de categorias
+              sazonais e um comitê semanal que “finalmente” usa os mesmos
+              números.
+            </p>
+            <p>
+              <a href="#relatorio-completo">Baixar o relatório completo (link falso)</a>
+              ·
+              <a href="#webinar">Assistir webinar gravado (link falso)</a>
+            </p>
+          </div>
+          <img
+            src="https://picsum.photos/seed/caso-vento-sul/800/560"
+            width="800"
+            height="560"
+            alt="Interior de loja com prateleiras organizadas"
+          />
+        </section>
+
+        <p class="tagline" id="insights">
+          <strong>Insights:</strong> conteúdo desta página é 100% fictício, para
+          você treinar estrutura semântica (<code>header</code>,
+          <code>main</code>, <code>footer</code>), navegação e, depois, eventos
+          em JavaScript.
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <strong class="footer-brand-title">Vértice Atlas</strong>
+          <p>
+            Consultoria de operações e analytics. CNPJ, endereço e telefone
+            desta empresa são imaginação — use a página como base para seus
+            testes no DOM.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Institucional</h3>
+          <ul>
+            <li><a href="#sobre">Quem somos</a></li>
+            <li><a href="#lideranca">Liderança</a></li>
+            <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+            <li><a href="#imprensa">Imprensa</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="#biblioteca">Biblioteca de PDFs</a></li>
+            <li><a href="#newsletter">Newsletter semanal</a></li>
+            <li><a href="#api">Documentação da API</a></li>
+            <li><a href="#status">Status dos sistemas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col" id="contato">
+          <h3>Contato fictício</h3>
+          <ul>
+            <li><a href="#comercial">comercial@verticeatlas.exemplo</a></li>
+            <li><a href="#rh">talentos@verticeatlas.exemplo</a></li>
+            <li><a href="#mapa">Av. das Cascatas, 1400 — Porto Nevado / PR</a></li>
+            <li><a href="#carreiras">Vagas abertas (0)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        <p>© 2026 Vértice Atlas S.A. · Todos os direitos reservados na ficção.</p>
+        <nav aria-label="Rodapé">
+          <ul>
+            <li><a href="#privacidade">Política de privacidade</a></li>
+            <li><a href="#cookies">Cookies</a></li>
+            <li><a href="#termos">Termos de uso</a></li>
+            <li><a href="#acessibilidade">Acessibilidade</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+    <!-- Tema: alterne em JS com document.documentElement.dataset.theme = 'dark' ou 'light'. Botão: #theme-toggle -->
+
+    <script>
+        const botaoTema = document.getElementById("theme-toggle");
+        const temaHtml = document.documentElement;
+
+        botaoTema.addEventListener("click", alternarTema);
+
+        function carregarTema(){
+            const temaSalvo = localStorage.getItem("tema");
+
+            if (temaSalvo){
+                temaHtml.dataset.theme = temaSalvo;
+            } else {
+                temaHtml.dataset.theme = "light";
+            };
+        };
+
+        function alternarTema(){
+
+            if (temaHtml.dataset.theme === "light") {
+                temaHtml.dataset.theme = "dark";
+            } else {
+                temaHtml.dataset.theme = "light";
+            };
+            localStorage.setItem("tema", temaHtml.dataset.theme);
+        };
+
+        carregarTema();
+    </script>
+  </body>
+</html>
