@@ -35,7 +35,8 @@
       min-height: 100dvh;
       font-family: var(--font);
       color: var(--text);
-      background: radial-gradient(
+      background:
+        radial-gradient(
           ellipse 120% 80% at 50% -20%,
           rgba(37, 99, 235, 0.08),
           transparent 55%
@@ -74,15 +75,21 @@
       min-height: 2.75rem;
       font-weight: 600;
       font-size: clamp(0.95rem, 2.8vw, 1.05rem);
-      transition: transform var(--transition), box-shadow var(--transition),
-        filter var(--transition), background-color var(--transition),
-        border-color var(--transition), color var(--transition);
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        filter var(--transition),
+        background-color var(--transition),
+        border-color var(--transition),
+        color var(--transition);
     }
 
     button:hover {
       transform: translateY(-1px);
       filter: brightness(0.94);
-      box-shadow: var(--shadow-hover), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+      box-shadow:
+        var(--shadow-hover),
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset;
     }
 
     button:active {
@@ -93,7 +100,9 @@
 
     button:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.45), var(--shadow-hover);
+      box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.45),
+        var(--shadow-hover);
     }
 
     /* Cores temáticas por nota */
@@ -104,7 +113,9 @@
     }
 
     #pessimo:hover {
-      box-shadow: var(--shadow-hover), 0 0 24px rgba(220, 38, 38, 0.35);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 24px rgba(220, 38, 38, 0.35);
     }
 
     #regular {
@@ -114,7 +125,9 @@
     }
 
     #regular:hover {
-      box-shadow: var(--shadow-hover), 0 0 24px rgba(234, 179, 8, 0.4);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 24px rgba(234, 179, 8, 0.4);
     }
 
     #excelente {
@@ -124,7 +137,9 @@
     }
 
     #excelente:hover {
-      box-shadow: var(--shadow-hover), 0 0 24px rgba(22, 163, 74, 0.35);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 24px rgba(22, 163, 74, 0.35);
     }
 
     /* Enviar: cor padrão + muda conforme qual nota está em destaque (:has) */
@@ -136,7 +151,9 @@
     }
 
     #enviar-avaliacao:hover {
-      box-shadow: var(--shadow-hover), 0 0 26px rgba(37, 99, 235, 0.45);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 26px rgba(37, 99, 235, 0.45);
     }
 
     section:has(#pessimo.destaque) #enviar-avaliacao {
@@ -145,7 +162,9 @@
     }
 
     section:has(#pessimo.destaque) #enviar-avaliacao:hover {
-      box-shadow: var(--shadow-hover), 0 0 26px rgba(220, 38, 38, 0.45);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 26px rgba(220, 38, 38, 0.45);
     }
 
     section:has(#regular.destaque) #enviar-avaliacao {
@@ -155,7 +174,9 @@
     }
 
     section:has(#regular.destaque) #enviar-avaliacao:hover {
-      box-shadow: var(--shadow-hover), 0 0 26px rgba(202, 138, 12, 0.5);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 26px rgba(202, 138, 12, 0.5);
     }
 
     section:has(#excelente.destaque) #enviar-avaliacao {
@@ -164,7 +185,9 @@
     }
 
     section:has(#excelente.destaque) #enviar-avaliacao:hover {
-      box-shadow: var(--shadow-hover), 0 0 26px rgba(22, 163, 74, 0.45);
+      box-shadow:
+        var(--shadow-hover),
+        0 0 26px rgba(22, 163, 74, 0.45);
     }
 
     /* Destaque após envio (seu JS adiciona .destaque): leve scale + fade + pulso curto */
@@ -193,6 +216,16 @@
       box-shadow: 0 8px 28px rgba(22, 163, 74, 0.45);
     }
 
+    .selecionado {
+      outline: none;
+      transform: scale(1.03);
+      filter: brightness(1.12);
+      box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.25),
+        0 0 0 3px rgba(0, 0, 0, 0.25) inset;
+      border-color: rgba(255, 255, 255, 0.65) !important;
+    }
+
     @keyframes destaque-pop {
       0% {
         opacity: 0.72;
@@ -212,61 +245,6 @@
         opacity: 1;
         transform: scale(1);
       }
-    }
-
-    /* Toast lateral: sobe suavemente; some quando #mensagem fica vazio (seu setTimeout) */
-    #mensagem {
-      position: fixed;
-      right: clamp(0.75rem, 3vw, 1.5rem);
-      bottom: clamp(0.75rem, 3vw, 1.5rem);
-      left: auto;
-      max-width: min(22rem, calc(100vw - 1.5rem));
-      z-index: 1000;
-      margin: 0;
-      padding: 0;
-      pointer-events: none;
-      border-radius: var(--radius-lg);
-      min-height: 0;
-      opacity: 0;
-      transform: translateY(120%);
-      transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    #mensagem:not(:empty) {
-      pointer-events: auto;
-      opacity: 1;
-      transform: translateY(0);
-      padding: 1rem 1.15rem;
-      font-size: 0.95rem;
-      line-height: 1.45;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    #mensagem.erro:not(:empty) {
-      background: linear-gradient(155deg, #fef2f2, #fee2e2);
-      color: #991b1b;
-      border-color: rgba(220, 38, 38, 0.25);
-    }
-
-    #mensagem.sucesso:not(:empty) {
-      background: linear-gradient(155deg, #f0fdf4, #dcfce7);
-      color: #166534;
-      border-color: rgba(22, 163, 74, 0.25);
-    }
-
-    #mensagem strong {
-      display: inline;
-      font-size: inherit;
-      font-weight: 800;
-    }
-
-    #mensagem.erro:not(:empty) strong {
-      color: #b91c1c;
-    }
-
-    #mensagem.sucesso:not(:empty) strong {
-      color: var(--good-dim);
     }
 
     /* Mobile: botões grandes, emoji maior, mais ar */
@@ -307,6 +285,48 @@
         transform: none;
       }
     }
+
+    /* ======== TOAST PROFISSIONAL (COMPATÍVEL COM SEU DESIGN) ======== */
+
+    #mensagem {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      min-width: 280px;
+      max-width: 350px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+    }
+
+    /* Sucesso */
+    #mensagem.sucesso {
+      background: #28a745;
+    }
+
+    /* Erro */
+    #mensagem.erro {
+      background: #dc3545;
+    }
+
+    /* Animação de entrada */
+    #mensagem.toast-visivel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animação de saída */
+    #mensagem.toast-saindo {
+      opacity: 0;
+      transform: translateY(20px);
+    }
   </style>
   <body>
     <main>
@@ -318,7 +338,7 @@
         <button id="enviar-avaliacao">Enviar Avaliação</button>
       </section>
       <section>
-        <div id="mensagem"></div>
+        <div id="mensagem" aria-live="polite"></div>
       </section>
     </main>
 
@@ -328,7 +348,10 @@
       const btnExcelente = document.getElementById("excelente");
       const btnEnviarAvaliacao = document.getElementById("enviar-avaliacao");
       const mensagem = document.getElementById("mensagem");
+
       let avaliacaoSelecionada = null;
+      let intervalContador = 0;
+      let timeoutAnimacao = 0;
 
       btnPessimo.addEventListener("click", () => {
         selecionarAvaliacao("pessimo");
@@ -345,6 +368,26 @@
 
       function selecionarAvaliacao(valor) {
         avaliacaoSelecionada = valor;
+
+        btnPessimo.classList.remove("destaque");
+        btnRegular.classList.remove("destaque");
+        btnExcelente.classList.remove("destaque");
+
+        btnPessimo.classList.remove("selecionado");
+        btnRegular.classList.remove("selecionado");
+        btnExcelente.classList.remove("selecionado");
+
+        switch (avaliacaoSelecionada) {
+          case "pessimo":
+            btnPessimo.classList.add("selecionado");
+            break;
+          case "regular":
+            btnRegular.classList.add("selecionado");
+            break;
+          case "excelente":
+            btnExcelente.classList.add("selecionado");
+            break;
+        }
       }
 
       function enviarAvaliacao() {
@@ -360,6 +403,10 @@
         A sua avaliação foi de <strong>${avaliacaoSelecionada}</strong> pelo nosso atendimento.`,
         );
 
+        btnPessimo.classList.remove("selecionado");
+        btnRegular.classList.remove("selecionado");
+        btnExcelente.classList.remove("selecionado");
+
         btnPessimo.classList.remove("destaque");
         btnRegular.classList.remove("destaque");
         btnExcelente.classList.remove("destaque");
@@ -374,30 +421,46 @@
           case "excelente":
             btnExcelente.classList.add("destaque");
             break;
-          default:
-            mostrarMensagem(
-              "erro",
-              "Nenhum botão de avaliação foi selecionado.",
-            );
         }
       }
 
       function mostrarMensagem(tipo, texto) {
-        mensagem.classList.remove("erro");
-        mensagem.classList.remove("sucesso");
+        clearInterval(intervalContador);
+        clearTimeout(timeoutAnimacao);
+
+        mensagem.classList.remove(
+          "erro",
+          "sucesso",
+          "toast-visivel",
+          "toast-saindo",
+        );
         mensagem.innerHTML = "";
 
-        if (tipo === "erro") {
-          mensagem.innerHTML = texto;
-          mensagem.classList.add("erro");
-        } else {
-          mensagem.innerHTML = texto;
-          mensagem.classList.add("sucesso");
-        }
+        mensagem.classList.add(tipo === "erro" ? "erro" : "sucesso");
+        mensagem.classList.add("toast-visivel");
 
-        setTimeout(() => {
+        let contador = 5;
+
+        mensagem.innerHTML = `${texto}<br><small>Fechando em ${contador}…</small>`;
+
+        intervalContador = setInterval(() => {
+          contador--;
+          mensagem.innerHTML = `${texto}<br><small>Fechando em ${contador}…</small>`;
+
+          if (contador === 0) {
+            clearInterval(intervalContador);
+            iniciarSaidaToast();
+          }
+        }, 1000);
+      }
+
+      function iniciarSaidaToast() {
+        mensagem.classList.add("toast-saindo");
+
+        timeoutAnimacao = setTimeout(() => {
+          mensagem.classList.remove("toast-visivel", "toast-saindo");
           mensagem.innerHTML = "";
-        }, 3500);
+        }, 420);
       }
     </script>
   </body>
