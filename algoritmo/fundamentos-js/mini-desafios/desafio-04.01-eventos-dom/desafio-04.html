@@ -36,12 +36,24 @@
       font-family: var(--font);
       color: var(--text);
       background:
+        /* Gradiente principal mais visível */
         radial-gradient(
-          ellipse 120% 80% at 50% -20%,
-          rgba(37, 99, 235, 0.08),
-          transparent 55%
+          circle at 20% 80%,
+          rgba(37, 99, 235, 0.3),
+          transparent 50%
         ),
-        var(--surface);
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(16, 163, 74, 0.25),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(202, 138, 12, 0.15),
+          transparent 60%
+        ),
+        /* Gradiente base */
+        linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -190,6 +202,24 @@
         0 0 26px rgba(22, 163, 74, 0.45);
     }
 
+    /* Estilo do botão desabilitado (classe botao-clicado) */
+    #enviar-avaliacao.botao-clicado {
+      background: linear-gradient(165deg, #94a3b8, #64748b) !important;
+      color: #cbd5e1 !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none !important;
+      filter: none !important;
+      box-shadow: none !important;
+    }
+
+    #enviar-avaliacao.botao-clicado:hover {
+      transform: none !important;
+      filter: none !important;
+      box-shadow: none !important;
+    }
+
     /* Destaque após envio (seu JS adiciona .destaque): leve scale + fade + pulso curto */
     .destaque {
       position: relative;
@@ -214,6 +244,57 @@
     #excelente.destaque {
       background: linear-gradient(165deg, #22c55e, var(--good-dim)) !important;
       box-shadow: 0 8px 28px rgba(22, 163, 74, 0.45);
+    }
+
+    /* Confetti/Emojis animados para o botão Excelente no envio */
+    body.excelente-enviado .confetti-container::after {
+      content: "⭐✨🎉💫🌟";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      font-weight: normal;
+      pointer-events: none;
+      z-index: 1000;
+      white-space: nowrap;
+      animation: confetti-queda 2s ease-in forwards;
+    }
+
+    /* Animações individuais para cada emoji - estilo queda */
+    body.excelente-enviado .confetti-container::after {
+      text-shadow:
+        -30px -40px 0 ⭐,
+        0 -35px 0 ✨,
+        30px -38px 0 🎉,
+        -25px -30px 0 💫,
+        15px -32px 0 🌟,
+        -15px -36px 0 ⭐,
+        35px -34px 0 ✨,
+        -35px -33px 0 🎉;
+    }
+
+    @keyframes confetti-queda {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -150%);
+      }
+      20% {
+        opacity: 1;
+        transform: translate(-50%, -100%);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      80% {
+        opacity: 0.8;
+        transform: translate(-50%, 0%);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, 50%);
+      }
     }
 
     .selecionado {
@@ -286,46 +367,107 @@
       }
     }
 
-    /* ======== TOAST PROFISSIONAL (COMPATÍVEL COM SEU DESIGN) ======== */
+    /* ===================== */
+    /* TOAST MODERNO PREMIUM */
+    /* ===================== */
 
     #mensagem {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      min-width: 280px;
-      max-width: 350px;
-      padding: 16px 20px;
-      border-radius: 10px;
-      font-size: 1rem;
-      color: white;
+      bottom: 24px;
+      right: 24px;
+      width: 400px;
+
+      padding: 18px 20px;
+      border-radius: 16px;
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      background: rgba(15, 23, 42, 0.82); /* slate-900 com transparência */
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+
+      color: #fff;
+      font-family: var(--font);
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(20px) scale(0.95);
       pointer-events: none;
+
       transition:
         opacity 0.35s ease,
-        transform 0.35s ease;
+        transform 0.35s cubic-bezier(0.16, 0.85, 0.45, 1);
+    }
+
+    /* Layout interno */
+    #mensagem .titulo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 4px;
+    }
+
+    #mensagem .texto {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      margin-bottom: 6px;
+    }
+
+    #mensagem .contador {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 6px;
+
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 6px;
     }
 
     /* Sucesso */
     #mensagem.sucesso {
-      background: #28a745;
+      background: linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.85),
+        rgba(22, 163, 74, 0.85)
+      );
     }
 
     /* Erro */
     #mensagem.erro {
-      background: #dc3545;
+      background: linear-gradient(
+        135deg,
+        rgba(239, 68, 68, 0.88),
+        rgba(220, 38, 38, 0.88)
+      );
     }
 
-    /* Animação de entrada */
+    /* Entrada */
     #mensagem.toast-visivel {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
-    /* Animação de saída */
+    /* Saída */
     #mensagem.toast-saindo {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(20px) scale(0.95);
+    }
+
+    /* Animação extra: leve brilho ao aparecer */
+    #mensagem.toast-visivel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+      animation: glowIn 0.6s ease forwards;
+    }
+
+    @keyframes glowIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
   </style>
   <body>
@@ -339,6 +481,7 @@
       </section>
       <section>
         <div id="mensagem" aria-live="polite"></div>
+        <div class="confetti-container"></div>
       </section>
     </main>
 
@@ -368,6 +511,7 @@
 
       function selecionarAvaliacao(valor) {
         avaliacaoSelecionada = valor;
+        localStorage.setItem("avaliacao", valor);
 
         btnPessimo.classList.remove("destaque");
         btnRegular.classList.remove("destaque");
@@ -391,25 +535,32 @@
       }
 
       function enviarAvaliacao() {
-        if (avaliacaoSelecionada === null)
-          return mostrarMensagem(
-            "erro",
-            "Selecione uma opção antes de enviar a sua avaliação!",
-          );
+        btnEnviarAvaliacao.disabled = true;
+        btnEnviarAvaliacao.classList.add("botao-clicado");
+
+        if (avaliacaoSelecionada === null) {
+          mostrarMensagem("erro", "Selecione uma opção antes de enviar.");
+
+          setTimeout(() => {
+            btnEnviarAvaliacao.disabled = false;
+            btnEnviarAvaliacao.classList.remove("botao-clicado");
+          }, 1800);
+
+          return;
+        }
+
+        if (avaliacaoSelecionada === "excelente") {
+          criarConfettiAleatorio();
+        }
 
         mostrarMensagem(
           "sucesso",
-          `Obrigado, a sua opinião foi registrada!
-        A sua avaliação foi de <strong>${avaliacaoSelecionada}</strong> pelo nosso atendimento.`,
+          `Obrigado! Registramos sua opinião: <strong> ${avaliacaoSelecionada} </strong>`,
         );
 
-        btnPessimo.classList.remove("selecionado");
-        btnRegular.classList.remove("selecionado");
-        btnExcelente.classList.remove("selecionado");
-
-        btnPessimo.classList.remove("destaque");
-        btnRegular.classList.remove("destaque");
-        btnExcelente.classList.remove("destaque");
+        btnPessimo.classList.remove("selecionado", "destaque");
+        btnRegular.classList.remove("selecionado", "destaque");
+        btnExcelente.classList.remove("selecionado", "destaque");
 
         switch (avaliacaoSelecionada) {
           case "pessimo":
@@ -422,6 +573,11 @@
             btnExcelente.classList.add("destaque");
             break;
         }
+
+        setTimeout(() => {
+          btnEnviarAvaliacao.disabled = false;
+          btnEnviarAvaliacao.classList.remove("botao-clicado");
+        }, 5000);
       }
 
       function mostrarMensagem(tipo, texto) {
@@ -436,16 +592,27 @@
         );
         mensagem.innerHTML = "";
 
-        mensagem.classList.add(tipo === "erro" ? "erro" : "sucesso");
+        const titulo =
+          tipo === "sucesso"
+            ? "✔️ Avaliação enviada!"
+            : "❌ Oops! Algo deu errado";
+
+        mensagem.classList.add(tipo);
         mensagem.classList.add("toast-visivel");
 
         let contador = 5;
 
-        mensagem.innerHTML = `${texto}<br><small>Fechando em ${contador}…</small>`;
+        mensagem.innerHTML = `
+          <div class="titulo">${titulo}</div>
+          <div class="texto">${texto}</div>
+          <div class="contador"> <small> Fechando em ${contador}...</small> </div>
+        `;
+
+        const contadorDiv = mensagem.querySelector(".contador");
 
         intervalContador = setInterval(() => {
           contador--;
-          mensagem.innerHTML = `${texto}<br><small>Fechando em ${contador}…</small>`;
+          contadorDiv.innerHTML = `<small> Fechando em ${contador}...</small>`;
 
           if (contador === 0) {
             clearInterval(intervalContador);
@@ -462,6 +629,70 @@
           mensagem.innerHTML = "";
         }, 420);
       }
+
+      function criarConfettiAleatorio() {
+        const emojis = ["⭐", "✨", "🎉", "💫", "🌟", "🎊", "🌈", "⚡"];
+
+        const quantidade = 15;
+
+        for (let i = 0; i < quantidade; i++) {
+          criarConfettiIndividual(emojis);
+        }
+      }
+
+      function criarConfettiIndividual(emojis) {
+        const confetti = document.createElement("div");
+
+        const emojiAleatorio =
+          emojis[Math.floor(Math.random() * emojis.length)];
+        confetti.textContent = emojiAleatorio;
+
+        const posicaoX = Math.random() * 100;
+        confetti.style.left = posicaoX + "%";
+
+        confetti.style.position = "fixed";
+        confetti.style.top = "-50px";
+        confetti.style.fontSize = Math.random() * 1 + 1 + "rem";
+        confetti.style.zIndex = "1000";
+        confetti.style.pointerEvents = "none";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          const duracao = Math.random() * 2 + 2;
+          confetti.style.transition = `all ${duracao}s ease-in`;
+          confetti.style.top = "110vh";
+          confetti.style.opacity = "0";
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        }, 200);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 3500);
+      }
+
+      function avaliacaoSalva() {
+        const salvo = localStorage.getItem("avaliacao");
+
+        if (salvo) {
+          avaliacaoSelecionada = salvo;
+          switch (avaliacaoSelecionada) {
+            case "pessimo":
+              btnPessimo.classList.add("selecionado");
+              break;
+            case "regular":
+              btnRegular.classList.add("selecionado");
+              break;
+            case "excelente":
+              btnExcelente.classList.add("selecionado");
+              break;
+          }
+
+          mostrarMensagem("sucesso", `Sua avaliação anterior foi de: ${avaliacaoSelecionada}`);
+        }
+      }
+
+      avaliacaoSalva();
     </script>
   </body>
 </html>
