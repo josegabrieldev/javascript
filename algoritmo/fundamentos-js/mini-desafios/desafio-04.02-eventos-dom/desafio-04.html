@@ -1,11 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/lucide@latest"></script>
     <title>Simulador de Orçamento de Frete</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      @charset "UTF-8";
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      :root {
+        --laranja-principal: #ff6600;
+        --azul-escuro: #0a1f44;
+        --azul-profundo: #122a5c;
+        --cinza-claro: #f5f6f8;
+        --cinza-medio: #b0b0b0;
+        --cinza-escuro: #333333;
+        --cinza-rodape: #e0e3e8;
+      }
+
+      html, body {
+        height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        background-color: var(--cinza-claro);
+        color: var(--cinza-escuro);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .linha-separacao {
+        width: 100%;
+        height: 1px;
+        background-color: #5f7aa8;
+      }
+
+      header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
+        padding: 1.5em;
+      }
+
+      header h1 {
+        color: var(--azul-escuro);
+      }
+
+      .nav-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .nav-container .menu-hamburguer {
+        background-color: transparent;
+        border: none;
+        color: var(--cinza-medio);
+        cursor: pointer;
+      }
+
+      .nav-container a {
+        text-decoration: none;
+        color: var(--cinza-medio);
+      }
+      .nav-container img {
+        max-width: 48px;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+
+      main {
+        flex: 1;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        margin: 2em auto;
+        border: 1px solid var(--cinza-medio);
+        border-radius: 15px;
+        box-shadow: 5px 5px 8px #3333333f;
+      }
+
+      .hero {
+        max-width: 100%;
+        min-height: 150px;
+        background: linear-gradient(180deg, var(--azul-escuro) 0%, var(--azul-profundo) 100%), url("images/caminhao.png") no-repeat right top;
+        background-size: 65%;
+        background-blend-mode: multiply;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2em;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .hero-text {
+        z-index: 1000;
+      }
+
+      .hero-text h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .formulario {
+        max-width: 600px;
+        background-color: white;
+        padding: 2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .input-icon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        margin: 15px auto;
+        border: 1px solid var(--cinza-medio);
+        border-radius: 10px;
+      }
+
+      .input-icon i {
+        color: var(--cinza-escuro);
+      }
+
+      .input-icon input {
+        width: 100%;
+        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        border: none;
+        border-radius: 6px;
+        outline: none;
+      }
+
+      .botao-calcular-frete {
+        background-color: var(--laranja-principal);
+        color: white;
+        border: none;
+        padding: 1em;
+        margin: auto;
+        border-radius: 6px;
+        font-size: 1.6em;
+        font-weight: bold;
+        cursor: pointer;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .tarifas {
+        width: 100%;
+        height: 100%;
+        background-color: #ccc;
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+        border-radius: 0 0 15px 15px;
+        border-top: 1px solid var(--cinza-medio);
+      }
+
+      .tarifas div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      footer {
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem;
+        background-color: var(--cinza-rodape);
+        font-size: 0.9rem;
+      }
+
+      .p-slogan {
+        color: black;
+        padding: 2em;
+        font-size: 0.8em;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .footer-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .footer-links a {
+        color: var(--azul-escuro);
+        text-decoration: none;
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>LOGISTIX PRO</h1>
+      <nav class="nav-container">
+        <button class="menu-hamburguer" id="menuHamburguer">
+          <i data-lucide="menu"></i>
+        </button>
+        <a href="#">
+          <i data-lucide="bell"></i>
+        </a>
+        <a href="#">
+          <i data-lucide="settings"></i>
+        </a>
+        <img
+          src="images/perfil-logistix-pro.jpeg"
+          alt="Perfil da Logistix PRO"
+        />
+      </nav>
+    </header>
+
+    <div class="linha-separacao"><!--Linha Separação--></div>
+    <main>
+          <section class="hero">
+            <div class="hero-text">
+                <h2>Simulador de Frete</h2>
+                <p>Calculo instantâneo baseado em distância e peso</p>
+            </div>
+          </section>
+          <section class="formulario">
+            <div>
+              <label for="distancia">Distância (km)</label>
+              <div class="input-icon">
+                <i data-lucide="map-pin"></i>
+                <input
+                  type="number"
+                  name="distancia"
+                  id="inputDistancia"
+                  placeholder="Ex: 450"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="peso">Peso da Carga (kg)</label>
+              <div class="input-icon">
+                <i data-lucide="weight"></i>
+                <input
+                  type="number"
+                  name="peso"
+                  id="inputPeso"
+                  placeholder="Ex: 120"
+                />
+              </div>
+            </div>
+            <button class="botao-calcular-frete" id="botaoCalcularFrete">
+              Calcular Frete
+              <i data-lucide="arrow-right"></i>
+            </button>
+          </section>
+          <section class="tarifas">
+            <div>
+              <i data-lucide="circle-dollar-sign"></i>
+              <p>
+                Tarifa Base <br />
+                R$: 2.50/km
+              </p>
+            </div>
+            <div>
+              <i data-lucide="weight-tilde"></i>
+              <p>
+                Extra Peso <br />
+                >100kg: R$ 80
+              </p>
+            </div>
+          </section>
+    </main>
+
+    <div class="linha-separacao"><!--Linha de Separação--></div>
+
+    <footer>
+      <div>
+        <p class="p-slogan">LOGISTIX PRO ENTERPRISE</p>
+        <p>© 2026 Logistix Pro Enterprise Solutions. All rights reserved.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Contact Support</a>
+        <a href="#">System Status</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">API Docs</a>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
 </html>
