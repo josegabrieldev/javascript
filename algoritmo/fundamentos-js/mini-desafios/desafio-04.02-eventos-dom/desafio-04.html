@@ -25,7 +25,8 @@
         --cinza-rodape: #e0e3e8;
       }
 
-      html, body {
+      html,
+      body {
         height: 100%;
       }
       body {
@@ -72,8 +73,10 @@
       }
 
       .nav-container a {
-        text-decoration: none;
         color: var(--cinza-medio);
+        text-decoration: none;
+        padding: 4px;
+        border-radius: 20%;
       }
       .nav-container img {
         max-width: 48px;
@@ -96,7 +99,13 @@
       .hero {
         max-width: 100%;
         min-height: 150px;
-        background: linear-gradient(180deg, var(--azul-escuro) 0%, var(--azul-profundo) 100%), url("images/caminhao.png") no-repeat right top;
+        background:
+          linear-gradient(
+            180deg,
+            var(--azul-escuro) 0%,
+            var(--azul-profundo) 100%
+          ),
+          url("images/caminhao.png") no-repeat right top;
         background-size: 65%;
         background-blend-mode: multiply;
         color: white;
@@ -186,6 +195,54 @@
         gap: 0.5rem;
       }
 
+      /* ============================
+   CARD DO RESULTADO DO FRETE
+============================ */
+      .resultado {
+        display: none; /* Começa escondido — você mostra via JS */
+        background: #ffffff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        animation: aparecer 0.35s ease;
+      }
+
+      @keyframes aparecer {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .resultado .titulo {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: #0f172a; /* cinza escuro elegante */
+      }
+
+      .resultado span {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 1rem;
+        color: #334155;
+      }
+
+      .resultado .total {
+        margin-top: 0.8rem;
+        padding-top: 0.6rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2563eb; /* azul destaque */
+        border-top: 1px dashed rgba(0, 0, 0, 0.15);
+      }
+
       footer {
         width: 100%;
         text-align: center;
@@ -238,58 +295,60 @@
 
     <div class="linha-separacao"><!--Linha Separação--></div>
     <main>
-          <section class="hero">
-            <div class="hero-text">
-                <h2>Simulador de Frete</h2>
-                <p>Calculo instantâneo baseado em distância e peso</p>
-            </div>
-          </section>
-          <section class="formulario">
-            <div>
-              <label for="distancia">Distância (km)</label>
-              <div class="input-icon">
-                <i data-lucide="map-pin"></i>
-                <input
-                  type="number"
-                  name="distancia"
-                  id="inputDistancia"
-                  placeholder="Ex: 450"
-                />
-              </div>
-            </div>
-            <div>
-              <label for="peso">Peso da Carga (kg)</label>
-              <div class="input-icon">
-                <i data-lucide="weight"></i>
-                <input
-                  type="number"
-                  name="peso"
-                  id="inputPeso"
-                  placeholder="Ex: 120"
-                />
-              </div>
-            </div>
-            <button class="botao-calcular-frete" id="botaoCalcularFrete">
-              Calcular Frete
-              <i data-lucide="arrow-right"></i>
-            </button>
-          </section>
-          <section class="tarifas">
-            <div>
-              <i data-lucide="circle-dollar-sign"></i>
-              <p>
-                Tarifa Base <br />
-                R$: 2.50/km
-              </p>
-            </div>
-            <div>
-              <i data-lucide="weight-tilde"></i>
-              <p>
-                Extra Peso <br />
-                >100kg: R$ 80
-              </p>
-            </div>
-          </section>
+      <section class="hero">
+        <div class="hero-text">
+          <h2>Simulador de Frete</h2>
+          <p>Calculo instantâneo baseado em distância e peso</p>
+        </div>
+      </section>
+      <section class="formulario">
+        <div>
+          <label for="distancia">Distância (km)</label>
+          <div class="input-icon">
+            <i data-lucide="map-pin"></i>
+            <input
+              type="number"
+              name="distancia"
+              id="inputDistancia"
+              placeholder="Ex: 450"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="peso">Peso da Carga (kg)</label>
+          <div class="input-icon">
+            <i data-lucide="weight"></i>
+            <input
+              type="number"
+              name="peso"
+              id="inputPeso"
+              placeholder="Ex: 120"
+            />
+          </div>
+        </div>
+        <button class="botao-calcular-frete" id="botaoCalcularFrete">
+          Calcular Frete
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </section>
+      <section class="tarifas">
+        <div>
+          <i data-lucide="circle-dollar-sign"></i>
+          <p>
+            Tarifa Base <br />
+            R$: 2.50/km
+          </p>
+        </div>
+        <div>
+          <i data-lucide="weight-tilde"></i>
+          <p>
+            Extra Peso <br />
+            >100kg: R$ 80
+          </p>
+        </div>
+      </section>
+
+      <section class="resultado" id="resultado"></section>
     </main>
 
     <div class="linha-separacao"><!--Linha de Separação--></div>
@@ -310,6 +369,65 @@
 
     <script>
       lucide.createIcons();
+
+      const inputDistancia = document.querySelector("#inputDistancia");
+      const inputPeso = document.querySelector("#inputPeso");
+      const botaoCalcularFrete = document.querySelector("#botaoCalcularFrete");
+      const resultado = document.querySelector("#resultado");
+      resultado.style.display = "none";
+
+      botaoCalcularFrete.addEventListener("click", calcularFrete);
+
+      function calcularFrete() {
+        const valorDistancia = inputDistancia.value;
+        const valorPeso = inputPeso.value;
+        let taxaExtra = 0;
+
+        if (
+          !valorDistancia ||
+          !valorPeso ||
+          valorDistancia <= 0 ||
+          valorPeso <= 0
+        ) {
+          resultado.innerHTML = `
+          <span>Preencha todos os campos corretamente.</span>
+          `;
+          resultado.style.display = "block"
+          return;
+        }
+
+        let valorBase = valorDistancia * 2.5;
+
+        if (valorPeso > 100) {
+          taxaExtra = 80;
+        }
+
+        const total = valorBase + taxaExtra;
+        const totalFormatado = total.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+
+        if (taxaExtra > 0) {
+          resultado.innerHTML = `
+          <h3 class="titulo">Frete calculado com sucesso!</h3>
+            <span class="distancia">Distância: ${valorDistancia} km</span>
+            <span class="peso">Peso: ${valorPeso} kg</span>
+            <span class="extra">Taxa extra aplicada: ${taxaExtra.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</span>
+            <span class="total">Valor final: ${totalFormatado}</span>
+          `;
+        } else {
+          resultado.innerHTML = `
+          <h3 class="titulo">Frete calculado com sucesso!</h3>
+            <span class="distancia">Distância: ${valorDistancia} km</span>
+            <span class="peso">Peso: ${valorPeso} kg</span>
+            <span class="total">Valor final: ${totalFormatado}</span>
+          `;
+        }
+        resultado.style.display = "block";
+        inputDistancia.value = "";
+        inputPeso.value = "";
+      }
     </script>
   </body>
 </html>
