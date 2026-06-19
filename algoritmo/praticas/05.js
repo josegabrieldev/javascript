@@ -73,3 +73,26 @@ function dobrarNumero(numero) {
 }
 
 dobrarNumero(maiorNumeroDaLista(listaAnos));
+
+const numeros = [72, 33, 12, 9, 7, 98, 127, 29, 23, 20, 14];
+
+function filtrar(lista, criterio) {
+    const res = []
+    for (let i = 0; i < lista.length; i++) {
+        if (criterio(lista[i])) {
+            res.push(lista[i])
+        }
+    }
+    return res;
+}
+
+function ePar(numero) {
+    return numero % 2 === 0;
+}
+
+function eImpar(numero) {
+    return numero % 2 === 1;
+}
+
+console.log(`Lista de números "Pares": ${filtrar(numeros, ePar)}`);
+console.log(`Lista de números "Impar": ${filtrar(numeros, eImpar)}`);
